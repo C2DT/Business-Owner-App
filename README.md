@@ -1,4 +1,4 @@
-# Business Owner App v4.6
+# Business Owner App v4.7
 
 Clean GitHub-ready build.
 
@@ -15,3 +15,11 @@ Clean GitHub-ready build.
 - Fresh service-worker cache: business-owner-v4-6.
 
 Upload the CONTENTS of this folder to the ROOT of the GitHub repository. Do not upload the ZIP itself or put the files inside another folder.
+
+
+v4.7 update improvements:
+- Network-first HTML navigation so new GitHub Pages versions are not pinned by an old cached index.
+- Service worker uses `updateViaCache: none` and explicitly checks for updates.
+- Old Business Owner service-worker caches are removed during activation.
+- New worker activates immediately and reloads the app once under the new controller.
+- Existing app data/localStorage is preserved.
