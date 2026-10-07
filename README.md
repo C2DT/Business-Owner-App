@@ -1,28 +1,17 @@
-# Business Owner App v4.5
+# Business Owner App v4.6
 
-Futuristic tile redesign:
-- High-end dark glass/neon visual treatment.
-- 100–300 Points: electric blue.
-- Team of 10: cyan/teal.
-- Platinum Run: blue.
-- Platinum+: violet/magenta.
-- Income Estimator: amber/gold.
-- Tile artwork is optimized local image assets for crisp, non-pixelated visuals.
-- Whole tile remains the button.
-- All v4.4 functionality is retained.
+Clean GitHub-ready build.
 
+- Business Owner terminology throughout.
+- Points instead of PV.
+- Team of 10 uses FILTERING.
+- Futuristic dark/neon tile design.
+- Runner and diamond artwork recropped with full artwork visible.
+- Income Estimator tile.
+- CNA onboarding link.
+- Current-month calendar only.
+- Share Previous Month / Share Previous Week image reports.
+- Team password is not displayed in the interface.
+- Fresh service-worker cache: business-owner-v4-6.
 
-## GitHub Pages
-
-Upload the contents of this folder to the root of your GitHub repository, then enable
-GitHub Pages from **Settings → Pages → Deploy from a branch → main → /(root)**.
-
-The app is a static client-side app. The Team of 10 password is stored in the JavaScript,
-so it is a convenience gate, **not a secure password system**. Anyone who can inspect the
-published source can discover it. Do not use it to protect confidential information.
-
-
-v4.5.2:
-- Removed the visible Team of 10 password from the Team screen.
-- The password prompt remains intentional and appears only when Team of 10 is opened.
-- The password itself is not displayed in the interface.
+Upload the CONTENTS of this folder to the ROOT of the GitHub repository. Do not upload the ZIP itself or put the files inside another folder.
