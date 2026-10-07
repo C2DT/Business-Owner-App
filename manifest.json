@@ -1,0 +1,9 @@
+{
+  "name":"Business Owner App",
+  "short_name":"Business Owner",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#0b1220",
+  "theme_color":"#244f7d",
+  "icons":[]
+}
