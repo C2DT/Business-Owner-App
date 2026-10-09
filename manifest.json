@@ -1,0 +1,9 @@
+{
+  "name":"Business Owner App V5.2.9",
+  "short_name":"IBO App",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#0b1220",
+  "theme_color":"#244f7d",
+  "icons":[]
+}
