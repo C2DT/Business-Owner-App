@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1220">
+<link rel="manifest" href="manifest.json">
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<title>Business Owner App v5.2.9</title>
+<style>
+:root{--bg:#0b1220;--panel:#111c2e;--panel2:#16243a;--text:#f5f7fb;--muted:#9aa9bd;--line:#26364d;--green:#2fb344;--yellow:#f2c94c;--gray:#536174;--gold:#ffd166}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}.wrap{max-width:760px;margin:auto;padding:10px}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}h1{font-size:22px;margin:0}.sub,.note{font-size:11px;color:var(--muted)}button{font:inherit;cursor:pointer}.top{background:var(--panel2);color:#fff;border:1px solid var(--line);border-radius:9px;padding:7px 10px}.screen{display:none}.screen.active{display:block}.home-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.tile{position:relative;aspect-ratio:1;background:linear-gradient(145deg,#17263d,#0e1828);border:1px solid var(--line);border-radius:18px;color:#fff;text-align:left;padding:15px;display:flex;align-items:flex-end;overflow:hidden}.tile .label{position:relative;z-index:2;font-weight:800;font-size:17px}.tile .small{display:block;color:#aebbd0;font-size:11px;font-weight:500;margin-top:4px}.tile svg{position:absolute;right:4%;top:4%;width:63%;height:63%;opacity:.16;fill:none;stroke:#dce9ff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}.tile .filled{fill:#dce9ff;stroke:none}.tile-pv{background:linear-gradient(145deg,#244f7d,#17345a);border-color:#38699b}.tile-team{background:linear-gradient(145deg,#176b68,#124b52);border-color:#25817c}.tile-run{background:linear-gradient(145deg,#4777b8,#244d80);border-color:#6f9bd2}.tile-plus{background:linear-gradient(145deg,#6950a8,#33215f);border-color:#8768c8}.tile-income{background:linear-gradient(145deg,#3d6f78,#24454f);border-color:#5f919a}.tile .income-svg{width:62%;height:62%;right:4%;top:4%;fill:none;stroke:#d5f2f4;stroke-width:3;opacity:.18;stroke-linecap:round;stroke-linejoin:round}.tile .runner-svg{width:67%;height:67%;right:1%;top:2%;fill:#c7d9f4;stroke:none;opacity:.18}.tile .diamond-svg{width:70%;height:70%;right:0%;top:0%;fill:none;stroke:#d7c8ff;stroke-width:3.2;opacity:.18}.section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;margin:9px 0}.section h2{font-size:17px;margin:0 0 7px}.habitgrid{display:grid;grid-template-columns:1fr 1fr;gap:6px}.habit{background:var(--panel2);border-radius:8px;padding:7px;font-size:11px;display:flex;align-items:center;justify-content:space-between;gap:4px}.habit input{width:18px;height:18px;accent-color:var(--green)}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}.metric{background:var(--panel2);border-radius:8px;text-align:center;padding:5px}.metric .name{font-size:9px;color:var(--muted);min-height:22px}.metric .num{font-size:19px;font-weight:800;line-height:1.05;margin:2px}.metric button{width:25px;height:24px;padding:0;border:0;border-radius:6px;background:#263953;color:#fff;font-size:17px}.metric .minus{margin-left:3px}.check{display:flex;align-items:center;gap:7px;padding:6px 1px;border-bottom:1px solid #ffffff0c;font-size:12px}.check:last-child{border:0}.check input{width:18px;height:18px;accent-color:var(--green)}.check .num{font-weight:800}.check .date{margin-left:auto;color:var(--muted);font-size:9px}.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}.dow{text-align:center;color:var(--muted);font-size:8px;padding:2px}.day{position:relative;aspect-ratio:1;border-radius:5px;background:var(--gray);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;overflow:hidden}.day.green{background:var(--green)}.day.yellow{background:var(--yellow);color:#111}.day.blank{visibility:hidden}.day .comm,.day .meet{position:absolute;inset:0}.day .comm{background:repeating-linear-gradient(135deg,transparent 0 5px,#fff9 5px 7px)}.day .meet{background:repeating-linear-gradient(45deg,transparent 0 5px,#0005 5px 7px)}.day .dn{position:relative;z-index:3}.day .gold{position:absolute;right:2px;top:0;color:var(--gold);font-size:10px;z-index:4;text-shadow:0 1px 2px #000}.legend{display:flex;flex-wrap:wrap;gap:7px;color:var(--muted);font-size:9px;margin-top:6px}.report-actions{display:flex;gap:6px;flex-wrap:wrap}.report-actions button{background:var(--panel2);color:#fff;border:1px solid var(--line);border-radius:8px;padding:7px 9px;font-size:11px}.report-month{margin-top:9px}.report-month h3{font-size:13px;margin:0 0 5px}.summary{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:6px}.sum{background:var(--panel2);padding:5px;border-radius:6px;font-size:10px}.visual{background:var(--panel2);border-radius:8px;padding:6px}.report-image-wrap{background:#fff;border-radius:10px;padding:6px;margin-top:6px}.report-image{display:block;width:100%;height:auto;border-radius:6px}.modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:18px;z-index:10}.modal.show{display:flex}.box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;width:min(350px,100%)}.box input{width:100%;padding:10px;border-radius:8px;border:1px solid var(--line);background:#0b1220;color:#fff;margin:8px 0}.box button{padding:8px 11px;border-radius:8px;border:0;background:var(--panel2);color:#fff}.danger{color:#ff9a9a}
+@media(max-width:430px){.wrap{padding:8px}.tile{border-radius:15px;padding:12px}.tile .label{font-size:15px}}
+
+.secret-reading{cursor:pointer}
+.recommended-reading-list{margin:16px 0 24px;padding-left:30px;line-height:1.65}
+.recommended-reading-list li{margin:3px 0}
+.recommended-reading-download{text-align:center;margin:20px 0 24px}
+.recommended-reading-download a{color:inherit;text-decoration:underline}
+
+.daily-weekly-activity{text-align:left;justify-content:space-between}.daily-weekly-activity input{margin-left:auto}
+.daily-weekly-activity .secret-reading{display:inline-block}
+
+.reading-book-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.reading-book-title{flex:1;text-align:left}
+.reading-book-toggle{min-width:92px;border:0;border-radius:8px;padding:7px 9px;font:inherit;cursor:pointer}
+.reading-book-toggle.blank{opacity:.7}.reading-book-toggle.current,.reading-book-toggle.finished{font-weight:700}
+.reading-book-toggle small{display:block;font-size:.75em;font-weight:400;margin-top:2px}
+.reading-finished-modal{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px;z-index:2147483647;position:fixed;inset:0;isolation:isolate}
+.reading-finished-modal.show{display:flex}.reading-finished-dialog{max-width:420px;width:100%;padding:22px;border-radius:16px;background:#151922;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.45)}
+.reading-finished-dialog h3{margin-top:0}.reading-finished-actions{display:flex;gap:10px;justify-content:center;margin-top:18px}
+.reading-finished-actions button{padding:10px 16px;border-radius:9px;border:0;cursor:pointer;font:inherit}.reading-finished-actions .confirm{font-weight:700}
+
+
+.outreach-confirm-modal{position:fixed;inset:0;background:rgba(0,0,0,.76);display:none;align-items:center;justify-content:center;z-index:2147483647;padding:20px;isolation:isolate}
+.outreach-confirm-modal.show{display:flex}.outreach-confirm-dialog{max-width:420px;width:100%;padding:22px;border-radius:16px;background:#151922;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.5);border:1px solid #354158}
+.outreach-confirm-dialog h3{margin:0 0 10px}.outreach-confirm-dialog p{color:#c0cad8;font-size:13px;line-height:1.5}.outreach-confirm-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px}.outreach-confirm-actions button{padding:10px 16px;border-radius:9px;border:1px solid var(--line);background:var(--panel2);color:#fff;cursor:pointer;font:inherit}.outreach-confirm-actions .confirm{font-weight:750;background:#263953}.outreach-screen .actions .clear-preview-button{background:#16243a;border-color:#26364d}
+
+.callback-datetime-row{display:flex;flex-direction:column;align-items:stretch;gap:7px;min-width:0;width:100%}
+.callback-datetime-row input{display:block;box-sizing:border-box;min-width:0;width:100%;max-width:100%}
+.callback-reset-button{align-self:flex-start;padding:8px 14px;border:1px solid var(--line);border-radius:9px;background:var(--panel);color:var(--text);font-weight:600;cursor:pointer}
+</style>
+<style id="v48-layout">
+.home-grid,.tiles,.tile-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important}
+.tile-income{grid-column:1/-1!important;width:100%!important;min-height:170px!important}
+@media(max-width:600px){.tile-income{min-height:150px!important}}
+</style><style id="v48-progress-css">
+.onboarding-progress-wrap{margin:10px 0 16px;padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.10)}
+.onboarding-progress-head{display:flex;justify-content:space-between;margin-bottom:8px;font-size:.82rem;font-weight:700}
+.onboarding-progress-track{width:100%;height:10px;border-radius:999px;overflow:hidden;background:rgba(255,255,255,.10)}
+.onboarding-progress-fill{height:100%;width:0;border-radius:999px;background:linear-gradient(90deg,#35c7ff,#7c5cff,#d85cff);transition:width .35s ease}
+.onboarding-progress-sub{margin-top:7px;font-size:.72rem;opacity:.72}
+</style><style id="v48-income-short">
+.tile-income{
+  grid-column:1 / -1 !important;
+  width:100% !important;
+  min-height:0 !important;
+  height:110px !important;
+}
+@media (max-width:600px){
+  .tile-income{height:95px !important;min-height:0 !important;}
+}
+</style>
+<style id="v482-cna-plain-link">
+/* CNA onboarding text should look like normal checklist text, not a hyperlink. */
+.onboarding-cna-link,
+.onboarding-cna-link:visited,
+.onboarding-cna-link:hover,
+.onboarding-cna-link:active {
+  color: inherit !important;
+  text-decoration: none !important;
+  font: inherit !important;
+}
+.cna-completed-link,
+.cna-completed-link:visited,
+.cna-completed-link:hover,
+.cna-completed-link:active {
+  color: inherit !important;
+  text-decoration: none !important;
+  font: inherit !important;
+}
+</style>
+
+
+<style id="v483-cna-link-fix">
+.cna-completed-link,
+.cna-completed-link:visited,
+.cna-completed-link:hover,
+.cna-completed-link:active {
+  color: inherit !important;
+  text-decoration: none !important;
+  font: inherit !important;
+  cursor: pointer;
+}
+</style>
+
+
+<style id="v5-outreach-css">
+.outreach-launch{padding:8px 10px}.outreach-launch .top{width:100%;text-align:left;font-weight:650;padding:8px 10px;background:var(--panel2);border-color:var(--line);color:var(--text)}
+.outreach-screen{display:none;position:relative;max-width:760px;margin:0 auto;padding:10px;color:var(--text)}.outreach-screen .section{margin:10px 0}.outreach-screen h2{font-size:17px}.outreach-screen input,.outreach-screen select,.outreach-screen textarea{max-width:100%;font:inherit;color:var(--text);background:#0b1220;border:1px solid var(--line);border-radius:8px;padding:8px}.outreach-screen input[type=file]{width:100%;font-size:12px}.outreach-screen input[type=checkbox]{accent-color:var(--green);width:17px;height:17px}.outreach-screen label{font-size:12px}.outreach-screen .field{display:flex;flex-direction:column;gap:5px;min-width:0}.outreach-screen .field input,.outreach-screen .field select{width:100%}.outreach-screen .two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px}.outreach-screen .plan-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.outreach-screen .plan-row .field{font-size:11px}.outreach-screen .plan-row select{padding:7px 4px;font-size:12px}.outreach-screen .weekdays{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.outreach-screen .weekday-row{display:grid;grid-template-columns:16px 16px minmax(0,1fr);align-items:center;gap:4px;background:var(--panel2);padding:5px;border-radius:7px;min-width:0}.outreach-screen .weekday-row label{font-size:11px;font-weight:750;text-align:center;white-space:nowrap}.outreach-screen .weekday-row select{width:100%;min-width:0;font-size:11px;padding:5px 2px}.outreach-screen .actions{display:flex;gap:6px;flex-wrap:wrap}.outreach-screen .actions button,.outreach-screen .customer-actions button,.outreach-screen .schedule-row button{border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--panel2);color:var(--text);font-size:12px}.outreach-screen .primary{background:var(--panel2);border-color:var(--line);font-weight:750}.outreach-screen .muted{font-size:11px;color:var(--muted)}.outreach-screen .customer-card{border:1px solid var(--line);border-radius:9px;margin:5px 0;background:#0e1828;overflow:hidden}.outreach-screen .customer-card summary{list-style:none;cursor:pointer;padding:8px 10px;font-size:13px;font-weight:700;overflow-wrap:anywhere}.outreach-screen .customer-card summary::-webkit-details-marker{display:none}.outreach-screen .customer-card summary:after{content:'＋';float:right;color:var(--muted);margin-left:8px}.outreach-screen .customer-card[open] summary:after{content:'−'}.outreach-screen .customer-options{padding:0 9px 10px;border-top:1px solid var(--line)}.outreach-screen .customer-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:7px}.outreach-screen .customer-actions button{padding:8px 4px}.outreach-screen .customer-actions .call-button,.outreach-screen .customer-actions .text-button{font-weight:750;background:#263953}.outreach-screen .customer-fields{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:7px}.outreach-screen .customer-management-launch{width:100%;text-align:left;font-weight:700}.customer-management-link,.customer-management-link:visited,.customer-management-link:hover,.customer-management-link:active{color:inherit;text-decoration:none;font:inherit;cursor:pointer}.customer-management-screen{display:none;position:relative;max-width:760px;margin:0 auto;padding:10px;color:var(--text)}.customer-management-screen .section{margin:10px 0}.customer-management-screen h2{font-size:17px}.customer-management-screen input,.customer-management-screen select,.customer-management-screen textarea{max-width:100%;font:inherit;color:var(--text);background:#0b1220;border:1px solid var(--line);border-radius:8px;padding:8px}.customer-management-screen .field{display:flex;flex-direction:column;gap:5px;min-width:0}.customer-management-screen label{font-size:12px}.customer-management-screen .two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px}.customer-management-screen .muted{font-size:11px;color:var(--muted)}.customer-management-screen .actions{display:flex;gap:5px;flex-wrap:wrap}.customer-management-screen .actions button{border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:var(--panel2);color:var(--text);font-size:12px}.customer-management-screen .customer-card{border:1px solid var(--line);border-radius:9px;margin:5px 0;background:#0e1828;overflow:hidden}.customer-management-screen .customer-card summary{list-style:none;cursor:pointer;padding:8px 10px;font-size:13px;font-weight:700;overflow-wrap:anywhere}.customer-management-screen .customer-card summary::-webkit-details-marker{display:none}.customer-management-screen .customer-card summary:after{content:"＋";float:right;color:var(--muted);margin-left:8px}.customer-management-screen .customer-card[open] summary:after{content:"−"}.customer-management-screen .customer-options{padding:0 9px 9px;border-top:1px solid var(--line)}.customer-management-screen .customer-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;margin-top:7px}.customer-management-screen .customer-actions button{border:1px solid var(--line);border-radius:8px;padding:8px 4px;background:var(--panel2);color:var(--text);font-size:12px}.customer-management-screen .customer-actions .call-button,.customer-management-screen .customer-actions .text-button{font-weight:750;background:#263953}.customer-management-screen .customer-fields{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:7px}.customer-management-screen textarea{width:100%;min-height:48px;margin-top:7px;font-size:12px}.customer-management-screen .customer-history{margin-top:8px;line-height:1.45}.customer-management-screen .status-ordering{border-color:#2f8a55}.customer-management-screen .empty{padding:12px;text-align:center;color:var(--muted);font-size:12px}.outreach-screen .customer-card textarea{width:100%;min-height:48px;margin-top:7px;font-size:12px}.outreach-screen .schedule-row{display:flex;gap:8px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--line);font-size:12px}.outreach-screen .schedule-row:last-child{border-bottom:0}.outreach-screen .schedule-time{min-width:112px;color:#b8c9df;font-size:11px}.outreach-screen .pill{display:inline-block;padding:3px 6px;border-radius:6px;background:#263953;color:#eaf2ff;font-size:10px}.outreach-screen .empty{padding:12px;text-align:center;color:var(--muted);font-size:12px}.outreach-screen .error{color:#ffb4b4;font-size:12px;margin-top:7px;white-space:pre-wrap}.outreach-screen .status-archived{opacity:.7}.outreach-screen .status-customer{border-color:#2f8a55}.outreach-screen .customer-history{margin-top:8px;line-height:1.45}
+.outreach-screen .priority-schedule-editor{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px;align-items:end;margin-top:5px;padding:7px;background:var(--panel2);border-radius:7px}.outreach-screen .priority-schedule-editor .field{font-size:11px}.outreach-screen .priority-schedule-editor input{width:100%;min-width:0;padding:6px;font-size:12px}.outreach-screen .priority-schedule-actions{display:flex;gap:4px}.outreach-screen .priority-schedule-actions button{padding:6px 8px;font-size:11px;white-space:nowrap}
+@media(max-width:430px){.outreach-screen{padding:8px}.outreach-screen .two-col{grid-template-columns:1fr 1fr}.outreach-screen .plan-row{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.outreach-screen .weekdays{grid-template-columns:repeat(4,minmax(0,1fr))}.outreach-screen .customer-fields{grid-template-columns:1fr 1fr}.outreach-screen .customer-actions{grid-template-columns:repeat(3,minmax(0,1fr))}.customer-management-screen{padding:8px}.customer-management-screen .two-col{grid-template-columns:1fr 1fr}.customer-management-screen .customer-fields{grid-template-columns:1fr 1fr}.customer-management-screen .customer-actions{grid-template-columns:repeat(3,minmax(0,1fr))}}
+</style>
+
+<style id="v511-privacy-notice-style">
+.outreach-privacy-overlay{position:fixed;inset:0;z-index:2147483646;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.76)}
+.outreach-privacy-overlay.show{display:flex}
+.outreach-privacy-dialog{width:min(430px,100%);padding:22px;border-radius:16px;background:var(--panel,#111c2e);border:1px solid var(--line,#26364d);box-shadow:0 12px 40px rgba(0,0,0,.45)}
+.outreach-privacy-dialog h3{margin:0 0 10px;font-size:18px}
+.outreach-privacy-dialog p{font-size:13px;line-height:1.5;color:var(--muted,#9aa9bd);margin:0 0 16px}
+.outreach-privacy-dialog .privacy-ok{display:block;width:100%;padding:11px 14px;border:0;border-radius:9px;background:var(--panel2,#16243a);color:var(--text,#f5f7fb);font-weight:700}
+</style>
+</head>
+<body data-version="v5.2.10-oauth-default"><div class="wrap">
+<header><div><h1>Business Owner App</h1><div class="sub">V5.2.9 • Progress, Reading & Outreach + Appointment Reminders</div></div><button class="top" onclick="show('home')">Home</button></header>
+
+<section id="home" class="screen active"><div class="home-grid">
+<button class="tile tile-pv" onclick="openTile('pv')"><svg viewBox="0 0 100 100"><path d="M14 18h9l8 45h45l9-32H27"/><circle cx="39" cy="78" r="6"/><circle cx="70" cy="78" r="6"/></svg><div class="label">100–300 Points<span class="small">Daily habits & production</span></div></button>
+<button class="tile tile-team" onclick="openTile('team')"><svg class="filled" viewBox="0 0 100 100"><circle cx="50" cy="25" r="12"/><circle cx="23" cy="35" r="9"/><circle cx="77" cy="35" r="9"/><path d="M31 78c1-19 9-30 19-30s18 11 19 30zM7 77c1-15 6-23 16-23s15 8 16 23zM61 77c1-15 6-23 16-23s15 8 16 23z"/></svg><div class="label">Team of 10<span class="small">Build your team</span></div></button>
+<button class="tile tile-run" onclick="openTile('platinum')"><svg class="runner-svg" viewBox="0 0 100 100" aria-hidden="true"><circle cx="58" cy="14" r="7"/><path d="M49 24c7 0 11 4 14 10l5 10 10-5 5 7-15 10c-3 2-7 1-9-2l-6-8-3 13 17 10 12 14-6 5-14-12-16-8-10 13-10 12-7-5 11-17c3-4 7-5 11-3l8-13-12 3-9 11-7-5 11-16c2-3 5-4 8-4l16-4c2 0 4-1 5-3l-3-8z"/></svg><div class="label">Platinum Run<span class="small">Run your plan</span></div></button>
+<button class="tile tile-plus" onclick="openTile('plus')"><svg class="diamond-svg" viewBox="0 0 100 100" aria-hidden="true"><path d="M17 39 L31 20 L69 20 L83 39 L50 81 Z"/><path d="M17 39 H83 M31 20 L50 39 L69 20 M31 20 L42 39 L50 81 M69 20 L58 39 L50 81"/></svg><div class="label">Platinum+<span class="small">Next level</span></div></button>
+<button class="tile tile-income" onclick="window.open('https://amwayincomeestimatortool.netlify.app/','_blank','noopener')">
+<svg class="income-svg" viewBox="0 0 100 100" aria-hidden="true">
+  <circle cx="50" cy="50" r="34"></circle>
+  <path d="M50 28v44M60 37c-3-4-8-6-13-6-8 0-13 4-13 10 0 7 7 9 15 11 8 2 14 4 14 11 0 7-6 11-15 11-7 0-13-3-17-8"></path>
+</svg>
+<div class="label">Income Estimator<span class="small">Estimate your income</span></div></button>
+</div></section>
+
+<section id="pv" class="screen">
+<button class="top" onclick="show('home')">← Home</button>
+<div class="section"><h2>Daily/Weekly Activities</h2><div class="habitgrid">
+<label class="habit daily-weekly-activity">🔊 Audio <input id="audio" type="checkbox" onchange="daily('audio',this.checked)"></label>
+<label class="habit daily-weekly-activity">📚 <span class="secret-reading" onclick="showRecommendedReading()">Reading</span> <input id="reading" type="checkbox" onchange="daily('reading',this.checked)"></label>
+<label class="habit daily-weekly-activity">📞 Upline Communication <input id="communication" type="checkbox" onchange="weekly('communication',this.checked)"></label>
+<label class="habit daily-weekly-activity">🎟️ Association <input id="meeting" type="checkbox" onchange="weekly('meeting',this.checked)"></label>
+</div></div>
+<div class="section"><h2>Monthly Production</h2><div class="grid3">
+<div class="metric"><div class="name"><a class="customer-management-link" href="#customer-management" onclick="event.preventDefault();openCustomerManagement('pv')">🛒 Ordering Customers — click here</a></div><div class="num" id="orders">0</div><button onclick="adjust('orders',1)">+</button><button class="minus" onclick="adjust('orders',-1)">−</button></div>
+<div class="metric"><div class="name"><a class="cna-completed-link" href="https://form.jotform.com/240634871232150" target="_blank" rel="noopener">📋 CNAs Completed — click here</a></div><div class="num" id="cnas">0</div><button onclick="adjust('cnas',1)">+</button><button class="minus" onclick="adjust('cnas',-1)">−</button></div>
+<div class="metric"><div class="name">📦 Sample Boxes Sold</div><div class="num" id="samples">0</div><button onclick="adjust('samples',1)">+</button><button class="minus" onclick="adjust('samples',-1)">−</button></div>
+</div></div>
+<div class="section outreach-launch"><button type="button" class="top" onclick="showOutreachScheduler()">📇 Outreach Scheduler</button><div class="note">Import contacts, plan outreach, and track follow-ups on this device.</div></div>
+<div class="section"><h2>Onboarding</h2><div id="steps"></div></div>
+<div class="section"><h2>Current Month</h2><div id="cal"></div><div class="legend">🟩 Audio + Reading　🟨 One habit　⬜ Neither　／ Communication　＼ Meeting　<span style="color:var(--gold)">Gold # = one-time</span></div></div>
+<div class="section"><h2>Share Reports</h2><div class="note">The current month stays above. Reports can be saved to Images to upload into the Messaging App.</div><div class="report-actions"><button onclick="sharePreviousMonth()">Share Previous Month</button><button onclick="sharePreviousWeek()">Share Previous Week</button></div></div>
+<div class="section"><button class="top danger" onclick="resetPV()">Reset 100–300 Points data on this device</button><div class="note">Only this tile is reset.</div></div>
+</section>
+<section id="team" class="screen"><button class="top" onclick="show('home')">← Home</button><div class="section"><h2>Team of 10</h2><div class="note">Password protected. Password: PVisEZ</div></div></section>
+<section id="platinum" class="screen"><button class="top" onclick="show('home')">← Home</button><div class="section"><h2>Platinum Run</h2><div class="note">Ready for its own trackers.</div></div></section>
+<section id="plus" class="screen"><button class="top" onclick="show('home')">← Home</button><div class="section"><h2>Platinum+</h2><div class="note">Ready for its own trackers.</div></div></section>
+</div>
+
+<div id="modal" class="modal"><div class="box"><h3>Enter Password</h3><input id="pw" type="password"><button onclick="closeModal()">Cancel</button> <button onclick="unlock()">Open</button><div id="err" class="note"></div></div></div>
+
+<script>
+const KEY='iboAppV4_2';
+const PASSWORDS={team:'PVisEZ',platinum:'Platinumisnobigdeal',plus:'7SimpleProjects'};
+const STEPS=['Place First Order','Plan for Conference','Web Tour','<a href="https://form.jotform.com/240634871232150" target="_blank" rel="noopener" class="onboarding-cna-link">Do a CNA on Yourself — click here</a>','Budget Session','Ditto Session','Customer Volume Session','Shoot Customer Video','Follow-Up Session','Sponsoring Unlocked','Read a 1st Year Book','Set Goals with Coach'];
+let S=(()=>{try{return Object.assign({days:{},weeks:{},months:{},onboarding:{},celebrated:false},JSON.parse(localStorage.getItem(KEY)||'{}'))}catch(e){return {days:{},weeks:{},months:{},onboarding:{},celebrated:false}}})();
+let pending=null;
+const save=()=>localStorage.setItem(KEY,JSON.stringify(S));
+const dateKey=d=>d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+const monthKey=(d=new Date())=>dateKey(d).slice(0,7);
+const parseMonth=k=>{let [y,m]=k.split('-').map(Number);return new Date(y,m-1,1)};
+const weekKey=d=>{d=new Date(d);d.setHours(0,0,0,0);let n=d.getDay()||7;d.setDate(d.getDate()-n+1);return dateKey(d)};
+const monthName=k=>parseMonth(k).toLocaleString(undefined,{month:'long',year:'numeric'});
+function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');if(id==='pv')render()}
+function tileUnlocked(id){try{return localStorage.getItem('businessOwnerUnlocked_'+id)==='1'}catch(e){return false}}
+function openTile(id){if(id==='pv'){show('pv');return}if(PASSWORDS[id]){if(tileUnlocked(id)){show(id);return}pending=id;pw.value='';err.textContent='';modal.classList.add('show');setTimeout(()=>pw.focus(),50);return}show(id)}
+function closeModal(){modal.classList.remove('show');pending=null}
+function unlock(){if(pending&&pw.value===PASSWORDS[pending]){let x=pending;try{localStorage.setItem('businessOwnerUnlocked_'+x,'1')}catch(e){}closeModal();show(x)}else err.textContent='Incorrect password.'}
+function daily(t,v){let k=dateKey(new Date());S.days[k]??={};S.days[k][t]=v;save();render()}
+function weekly(t,v){daily(t,v)}
+function adjust(t,n){let k=monthKey();S.months[k]??={};S.months[k][t]=Math.max(0,(S.months[k][t]||0)+n);save();render()}
+function toggle(i,v){if(v)S.onboarding[i]=dateKey(new Date());else delete S.onboarding[i];if(STEPS.every((_,i)=>S.onboarding[i])&&!S.celebrated){S.celebrated=true;save();setTimeout(()=>alert('Congratulations on completing your onboarding and unlocking expansion!'),20)}save();render()}
+function flags(k){let d=S.days[k]||{},f={audio:!!d.audio,reading:!!d.reading,communication:!!d.communication,meeting:!!d.meeting};Object.values(S.weeks).forEach(w=>{if(w.communicationDate===k)f.communication=true;if(w.meetingDate===k)f.meeting=true});return f}
+function counts(k){let p=parseMonth(k),last=new Date(p.getFullYear(),p.getMonth()+1,0).getDate(),c={audio:0,reading:0,updates:0,meetings:0};for(let i=1;i<=last;i++){let f=flags(dateKey(new Date(p.getFullYear(),p.getMonth(),i)));c.audio+=f.audio;c.reading+=f.reading;c.updates+=f.communication;c.meetings+=f.meeting}let m=S.months[k]||{};return {...c,orders:m.orders||0,cnas:m.cnas||0,samples:m.samples||0}}
+function hasData(k){let c=counts(k);return Object.values(c).some(v=>v>0)||Object.values(S.onboarding).some(v=>v.slice(0,7)===k)}
+function previousData(){let p=parseMonth(monthKey());p.setMonth(p.getMonth()-1);for(let i=0;i<60;i++){let k=monthKey(p);if(hasData(k))return k;p.setMonth(p.getMonth()-1)}return null}
+function calendar(k){let p=parseMonth(k),first=p.getDay(),last=new Date(p.getFullYear(),p.getMonth()+1,0).getDate(),a=['<div class="calendar">',...['S','M','T','W','T','F','S'].map(x=>`<div class="dow">${x}</div>`)];for(let i=0;i<first;i++)a.push('<div class="day blank"></div>');for(let i=1;i<=last;i++){let dk=dateKey(new Date(p.getFullYear(),p.getMonth(),i)),f=flags(dk),cls=f.audio&&f.reading?'green':f.audio||f.reading?'yellow':'';let nums=[];Object.keys(S.onboarding).forEach(n=>{if(S.onboarding[n]===dk)nums.push(+n+1)});a.push(`<div class="day ${cls}"><span class="dn">${i}</span>${f.communication?'<span class="comm"></span>':''}${f.meeting?'<span class="meet"></span>':''}${nums.length?`<span class="gold">${nums.join(',')}</span>`:''}</div>`)}return a.join('')+'</div>'}
+function renderSteps(){steps.innerHTML=STEPS.map((x,i)=>`<label class="check"><input type="checkbox" ${S.onboarding[i]?'checked':''} onchange="toggle(${i},this.checked)"><span class="num">${i+1}.</span><span>${x}</span><span class="date">${S.onboarding[i]||''}</span></label>`).join('')}
+function summary(k){let c=counts(k);return `<div class="summary"><div class="sum">🔊 Audio: <b>${c.audio}</b></div><div class="sum">📚 Reading: <b>${c.reading}</b></div><div class="sum">📞 Updates: <b>${c.updates}</b></div><div class="sum">🎟️ Meetings: <b>${c.meetings}</b></div><div class="sum">🛒 Customers: <b>${c.orders}</b></div><div class="sum">📋 CNAs: <b>${c.cnas}</b></div><div class="sum">📦 Samples: <b>${c.samples}</b></div></div>`}
+function previousReportMonth(){
+  return previousData() || monthKey(new Date(new Date().getFullYear(),new Date().getMonth()-1,1));
+}
+
+function reportRangeCounts(start,end){
+  const lo=new Date(start);lo.setHours(0,0,0,0);const hi=new Date(end);hi.setHours(0,0,0,0);
+  const inRange=value=>{const d=new Date(value);return !Number.isNaN(d.getTime())&&d>=lo&&d<hi};
+  // Outreach state lives inside the scheduler's closure; read it through the explicit bridge below.
+  const outreachData=window.getOutreachReportData?window.getOutreachReportData():{assignments:[],contacts:[]};
+  const assignments=Array.isArray(outreachData.assignments)?outreachData.assignments:[];
+  const contacts=Array.isArray(outreachData.contacts)?outreachData.contacts:[];
+  const pastAssignments=assignments.filter(a=>inRange(a.start)&&new Date(a.start)<new Date());
+  const historyRows=contacts.flatMap(c=>(c.history||[]).map(h=>({c,h})));
+  const referrals=historyRows.filter(({h})=>h.action==='Received Referral'&&inRange(h.date)).length;
+  const outreach=pastAssignments.filter(a=>a.type==='outreach'||a.type==='followup').length;
+  const callbacks=pastAssignments.filter(a=>a.type==='callback').length;
+  const plannedEnd=new Date();plannedEnd.setHours(0,0,0,0);plannedEnd.setDate(plannedEnd.getDate()+(hi.getTime()-lo.getTime())/86400000);
+  const now=new Date();const planned=assignments.filter(a=>{const d=new Date(a.start);return d>=now&&d<plannedEnd});
+  const plannedOutreach=planned.filter(a=>a.type==='outreach'||a.type==='followup').length;
+  const plannedCallbacks=planned.filter(a=>a.type==='callback').length;
+  // A future CNA count is only possible when a CNA is represented by a dated assignment.
+  const plannedCNAs=planned.filter(a=>a.type==='cna').length;
+  return {outreach,callbacks,referrals,plannedOutreach,plannedCallbacks,plannedCNAs};
+}
+function reportMetricLines(ctx,counts,x,y,width,periodLabel){
+  ctx.fillStyle='#0b1220';ctx.font='700 25px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('Customer Activity',x,y);y+=35;
+  const actual=[['Outreach appointments',counts.outreach],['Customer callbacks',counts.callbacks],['Referrals received',counts.referrals]].filter(([,n])=>n>0);
+  ctx.fillStyle='#536174';ctx.font='400 21px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';
+  if(actual.length){actual.forEach(([label,n])=>{ctx.fillText(`${label}: ${n}`,x,y);y+=29})}else{ctx.fillText('No customer activity recorded for this period.',x,y);y+=29}
+  y+=10;ctx.fillStyle='#0b1220';ctx.font='700 25px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText(`Planned appointments — ${periodLabel}`,x,y);y+=35;
+  const planned=[['Outreach',counts.plannedOutreach],['Customer callbacks',counts.plannedCallbacks],['CNAs scheduled',counts.plannedCNAs]].filter(([,n])=>n>0);
+  ctx.fillStyle='#536174';ctx.font='400 21px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';
+  if(planned.length)planned.forEach(([label,n])=>{ctx.fillText(`${label}: ${n}`,x,y);y+=29});else ctx.fillText('No appointments currently planned for this period.',x,y);
+  return y;
+}
+
+function drawReportImage(k){
+  const c=counts(k),p=parseMonth(k),days=new Date(p.getFullYear(),p.getMonth()+1,0).getDate();
+  const W=1200,H=2240,m=70,ctx=document.createElement('canvas').getContext('2d'),canvas=ctx.canvas;canvas.width=W;canvas.height=H;ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#0b1220';ctx.font='700 54px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('Business Owner Monthly Report',m,78);
+  ctx.fillStyle='#536174';ctx.font='400 28px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText(monthName(k),m,120);
+  ctx.fillStyle='#111c2e';ctx.font='700 26px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('Monthly Activity',m,178);
+  const metrics=[['🔊','Audio Days',c.audio],['📚','Reading Days',c.reading],['📞','Updates',c.updates],['🎟️','Meetings',c.meetings],['🛒','Ordering Customers',c.orders],['📋','CNAs',c.cnas],['📦','Sample Boxes Sold',c.samples]];
+  const cardW=335,cardH=92,gap=18;
+  metrics.forEach((it,i)=>{const col=i%3,row=Math.floor(i/3),x=m+col*(cardW+gap),y=198+row*(cardH+gap);ctx.fillStyle='#f2f5f8';ctx.fillRect(x,y,cardW,cardH);ctx.fillStyle='#0b1220';ctx.font='700 25px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText(it[0]+' '+it[1],x+18,y+34);ctx.font='800 34px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText(String(it[2]),x+18,y+72)});
+  const calTop=600,gridX=m,cell=145,gridGap=7,totalCell=cell+gridGap;ctx.fillStyle='#0b1220';ctx.font='700 30px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('Daily Tracker',m,calTop-22);
+  const dows=['S','M','T','W','T','F','S'];ctx.font='700 20px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';dows.forEach((d,i)=>{ctx.fillStyle='#536174';ctx.textAlign='center';ctx.fillText(d,gridX+i*totalCell+cell/2,calTop+16)});ctx.textAlign='left';
+  const first=new Date(p.getFullYear(),p.getMonth(),1).getDay(),rows=Math.ceil((first+days)/7),cellTop=calTop+35;
+  for(let slot=0;slot<rows*7;slot++){const day=slot-first+1;if(day<1||day>days)continue;const cellDate=new Date(p.getFullYear(),p.getMonth(),day);const dk=dateKey(cellDate),f=flags(dk),col=cellDate.getDay(),row=Math.floor((first+day-1)/7),x=gridX+col*totalCell,y=cellTop+row*totalCell;ctx.fillStyle=f.audio&&f.reading?'#2fb344':(f.audio||f.reading?'#f2c94c':'#536174');ctx.fillRect(x,y,cell,cell);
+    if(f.communication){ctx.save();ctx.beginPath();ctx.rect(x,y,cell,cell);ctx.clip();ctx.strokeStyle='rgba(255,255,255,.72)';ctx.lineWidth=7;for(let s=-cell;s<cell*2;s+=28){ctx.beginPath();ctx.moveTo(x+s,y);ctx.lineTo(x+s-cell,y+cell);ctx.stroke()}ctx.restore()}
+    if(f.meeting){ctx.save();ctx.beginPath();ctx.rect(x,y,cell,cell);ctx.clip();ctx.strokeStyle='rgba(0,0,0,.35)';ctx.lineWidth=7;for(let s=-cell;s<cell*2;s+=28){ctx.beginPath();ctx.moveTo(x+s,y);ctx.lineTo(x+s+cell,y+cell);ctx.stroke()}ctx.restore()}
+    ctx.fillStyle=(f.audio||f.reading)?'#111c2e':'#fff';ctx.font='800 27px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText(String(day),x+10,y+34);if(readingFinishedOnDate(new Date(p.getFullYear(),p.getMonth(),day))){ctx.font='700 27px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('📖',x+cell-42,y+34)}const nums=[];Object.keys(S.onboarding).forEach(n=>{if(S.onboarding[n]===dk)nums.push(+n+1)});if(nums.length){ctx.fillStyle='#f97316';ctx.font='900 22px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.textAlign='right';ctx.fillText(nums.join(','),x+cell-8,y+27);ctx.textAlign='left'}}
+  const legendY=cellTop+rows*totalCell+25;ctx.font='400 20px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillStyle='#536174';ctx.fillText('Green = Audio + Reading   Yellow = one habit   Gray = neither',m,legendY);ctx.fillText('/ Communication   \\ Meeting   📖 = book finished',m,legendY+30);
+  let ry=legendY+82;ry=drawReadingLines(ctx,m,ry,true);const prevStart=new Date(p.getFullYear(),p.getMonth(),1),prevEnd=new Date(p.getFullYear(),p.getMonth()+1,1);const nextStart=new Date();nextStart.setHours(0,0,0,0);const nextEnd=new Date(nextStart);nextEnd.setDate(nextEnd.getDate()+30);const rpt=reportRangeCounts(prevStart,prevEnd);const planRpt=reportRangeCounts(nextStart,nextEnd);reportMetricLines(ctx,{...rpt,plannedOutreach:planRpt.plannedOutreach,plannedCallbacks:planRpt.plannedCallbacks,plannedCNAs:planRpt.plannedCNAs},m,Math.max(ry+25,1760),W-2*m,'next month');ctx.fillStyle='#9aa9bd';ctx.font='400 17px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('Business Owner App • Generated from this device',m,H-30);return canvas.toDataURL('image/png');
+}
+
+function previousWeekStart(){
+  const d=new Date();d.setHours(0,0,0,0);d.setDate(d.getDate()-6);return d;
+}
+
+function drawWeekImage(start){
+  const W=1200,H=1280,m=70,ctx=document.createElement('canvas').getContext('2d'),canvas=ctx.canvas;canvas.width=W;canvas.height=H;ctx.fillStyle='#fff';ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#0b1220';ctx.font='700 52px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('Business Owner 7-Day Report',m,78);
+  const end=new Date(start);end.setDate(end.getDate()+6);ctx.fillStyle='#536174';ctx.font='400 27px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText(`${start.toLocaleDateString()} – ${end.toLocaleDateString()}`,m,120);
+  const x0=m,y=185,cellW=145,cellH=350,gap=8;
+  for(let i=0;i<7;i++){const d=new Date(start);d.setHours(0,0,0,0);d.setDate(d.getDate()+i);const dk=dateKey(d),f=flags(dk),x=x0+i*(cellW+gap);const weekday=d.toLocaleDateString('en-US',{weekday:'short'});ctx.fillStyle='#536174';ctx.font='700 20px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.textAlign='center';ctx.fillText(weekday,x+cellW/2,y-22);ctx.fillStyle=f.audio&&f.reading?'#2fb344':(f.audio||f.reading?'#f2c94c':'#536174');ctx.fillRect(x,y,cellW,cellH);
+    if(f.communication){ctx.save();ctx.beginPath();ctx.rect(x,y,cellW,cellH);ctx.clip();ctx.strokeStyle='rgba(255,255,255,.72)';ctx.lineWidth=7;for(let s=-cellH;s<cellW*2;s+=28){ctx.beginPath();ctx.moveTo(x+s,y);ctx.lineTo(x+s-cellH,y+cellH);ctx.stroke()}ctx.restore()}
+    if(f.meeting){ctx.save();ctx.beginPath();ctx.rect(x,y,cellW,cellH);ctx.clip();ctx.strokeStyle='rgba(0,0,0,.35)';ctx.lineWidth=7;for(let s=-cellH;s<cellW*2;s+=28){ctx.beginPath();ctx.moveTo(x+s,y);ctx.lineTo(x+s+cellH,y+cellH);ctx.stroke()}ctx.restore()}
+    ctx.fillStyle=(f.audio||f.reading)?'#111c2e':'#fff';ctx.font='800 34px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText(String(d.getDate()),x+cellW/2,y+48);if(readingFinishedOnDate(d)){ctx.font='700 28px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('📖',x+cellW/2,y+88)}ctx.font='700 20px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText(d.toLocaleDateString(undefined,{weekday:'short'}),x+cellW/2,y+cellH-38);const nums=[];Object.keys(S.onboarding).forEach(n=>{if(S.onboarding[n]===dk)nums.push(+n+1)});if(nums.length){ctx.fillStyle='#f97316';ctx.font='900 24px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('Onboarding '+nums.join(','),x+cellW/2,y+cellH-82)}ctx.textAlign='left'}
+  ctx.fillStyle='#536174';ctx.font='400 22px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('Green = Audio + Reading   Yellow = one habit   Gray = neither',m,590);ctx.fillText('/ Communication   \\ Meeting   📖 = book finished',m,625);ctx.fillStyle='#0b1220';ctx.font='700 24px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('Weekly totals',m,680);
+  let a=0,r=0,u=0,me=0;for(let i=0;i<7;i++){const d=new Date(start);d.setDate(d.getDate()+i);const f=flags(dateKey(d));a+=f.audio;r+=f.reading;u+=f.communication;me+=f.meeting}ctx.fillStyle='#536174';ctx.font='400 21px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText(`🔊 Audio: ${a}    📚 Reading: ${r}    📞 Updates: ${u}    🎟️ Meetings: ${me}`,m,720);ctx.fillStyle='#0b1220';ctx.font='700 22px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('Currently Reading: '+(getCurrentReadingBook()||'None selected'),m,765);const last=getLastFinishedReadingBook();if(last){ctx.fillStyle='#536174';ctx.font='400 20px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('Last Book finished on: '+last.date,m,797)}const pastEnd=new Date(start);pastEnd.setDate(pastEnd.getDate()+7);const rpt=reportRangeCounts(start,pastEnd);const nextStart=new Date();nextStart.setHours(0,0,0,0);const nextEnd=new Date(nextStart);nextEnd.setDate(nextEnd.getDate()+7);const planRpt=reportRangeCounts(nextStart,nextEnd);reportMetricLines(ctx,{...rpt,plannedOutreach:planRpt.plannedOutreach,plannedCallbacks:planRpt.plannedCallbacks,plannedCNAs:planRpt.plannedCNAs},m,850,W-2*m,'next week');ctx.fillStyle='#9aa9bd';ctx.font='400 17px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('Business Owner App • Generated from this device',m,H-25);return canvas.toDataURL('image/png');
+}
+
+async function shareImageData(dataUrl,title,fileName,textFallback){
+  const res=await fetch(dataUrl),blob=await res.blob(),file=new File([blob],fileName,{type:'image/png'});
+  if(navigator.share&&navigator.canShare&&navigator.canShare({files:[file]})){try{await navigator.share({title,files:[file]});return}catch(e){}}
+  if(navigator.share){try{await navigator.share({title,text:textFallback});return}catch(e){}}
+  const a=document.createElement('a');a.href=dataUrl;a.download=fileName;document.body.appendChild(a);a.click();a.remove();
+}
+
+async function sharePreviousMonth(){try{const k=previousReportMonth();await shareImageData(drawReportImage(k),`Business Owner Monthly Report — ${monthName(k)}`,`IBO_Report_${k}.png`,`Business Owner Monthly Report — ${monthName(k)}`)}catch(e){alert('Could not create the monthly report. Please close and reopen the app, then try again. '+(e&&e.message?e.message:''))}}
+async function sharePreviousWeek(){try{const start=previousWeekStart(),end=new Date(start);end.setDate(end.getDate()+6);const range=`${start.toLocaleDateString()} – ${end.toLocaleDateString()}`;await shareImageData(drawWeekImage(start),`Business Owner 7-Day Report — ${range}`,`IBO_Weekly_Report_${dateKey(start)}.png`,`Business Owner 7-Day Report — ${range}`)}catch(e){alert('Could not create the weekly report. Please close and reopen the app, then try again. '+(e&&e.message?e.message:''))}}
+
+function renderReport(){}
+function render(){let k=dateKey(new Date()),f=flags(k);audio.checked=f.audio;reading.checked=f.reading;communication.checked=f.communication;meeting.checked=f.meeting;let m=S.months[monthKey()]||{};orders.textContent=m.orders||0;cnas.textContent=m.cnas||0;samples.textContent=m.samples||0;renderSteps();cal.innerHTML=calendar(monthKey())}
+
+function resetPV(){if(confirm('Reset all 100–300 Points data on this device?')){S={days:{},weeks:{},months:{},onboarding:{},celebrated:false};save();render()}}
+render();if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+
+function showRecommendedReading(){
+  // Hide every top-level app screen/layer.
+  document.querySelectorAll('body > *').forEach(function(el){
+    if(el.tagName !== 'SCRIPT'){
+      el.dataset.rrLayerDisplay = el.style.display || '';
+      el.style.display = 'none';
+    }
+  });
+
+  // Show only the Recommended Reading third layer.
+  var screen = document.getElementById('recommended-reading-screen');
+  screen.style.display = 'block';
+  screen.classList.add('active'); screen.setAttribute('aria-hidden','false');
+  window.scrollTo(0,0);
+}
+
+function closeRecommendedReading(){
+  // Hide the third layer.
+  var screen = document.getElementById('recommended-reading-screen');
+  screen.classList.remove('active'); screen.setAttribute('aria-hidden','true');
+  screen.style.display = 'none';
+
+  // Restore all normal app layers, then explicitly show only 100–300 Points.
+  document.querySelectorAll('[data-rr-layer-display]').forEach(function(el){
+    el.style.display = el.dataset.rrLayerDisplay;
+    delete el.dataset.rrLayerDisplay;
+  });
+
+  show('pv');
+  window.scrollTo(0,0);
+}
+
+</script>
+<script id="v48-progress-js">
+(function(){
+function boxes(){var s=['#onboarding input[type="checkbox"]','.onboarding-list input[type="checkbox"]','.onboarding-item input[type="checkbox"]'];for(var i=0;i<s.length;i++){var e=document.querySelectorAll(s[i]);if(e.length)return Array.from(e)}return[]}
+function update(){var b=boxes();if(!b.length)return;var d=b.filter(function(x){return x.checked}).length,t=b.length,p=Math.round(d/t*100),w=document.getElementById('onboardingProgressWrap');if(!w){var h=Array.from(document.querySelectorAll('h1,h2,h3,h4,h5,.section-title,.card-title')).find(function(x){return /onboarding/i.test(x.textContent)});if(!h)return;w=document.createElement('div');w.id='onboardingProgressWrap';w.className='onboarding-progress-wrap';w.innerHTML='<div class="onboarding-progress-head"><span>Onboarding Progress</span><strong id="onboardingProgressPct">0%</strong></div><div class="onboarding-progress-track"><div id="onboardingProgressFill" class="onboarding-progress-fill"></div></div><div id="onboardingProgressSub" class="onboarding-progress-sub">0 of 0 completed</div>';h.insertAdjacentElement('afterend',w)}document.getElementById('onboardingProgressPct').textContent=p+'%';document.getElementById('onboardingProgressFill').style.width=p+'%';document.getElementById('onboardingProgressSub').textContent=d+' of '+t+' completed'}
+document.addEventListener('change',function(e){if(e.target&&e.target.matches('input[type="checkbox"]'))setTimeout(update,0)});setTimeout(update,100);setTimeout(update,600);window.updateOnboardingProgress=update;
+})();
+</script>
+<script id="v481-persistent-unlocks">
+(function(){
+  var KEY='businessOwnerUnlockedSectionsV481';
+  function getUnlocked(){
+    try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}
+  }
+  function saveUnlocked(x){localStorage.setItem(KEY,JSON.stringify(x))}
+  window.isSectionUnlocked=function(id){return !!getUnlocked()[id]};
+  window.unlockSection=function(id){
+    var x=getUnlocked(); x[id]=true; saveUnlocked(x);
+  };
+
+  // Wrap the existing password prompt by intercepting the common openTile path.
+  // If the section has already been unlocked, bypass the password modal.
+  var originalOpenTile=window.openTile;
+  if(typeof originalOpenTile==='function'){
+    window.openTile=function(id){
+      if(window.isSectionUnlocked(id)){
+        var direct=document.querySelector('[data-section="'+id+'"]');
+        if(direct && typeof direct.click==='function'){ direct.click(); return; }
+      }
+      return originalOpenTile.apply(this,arguments);
+    };
+  }
+
+  // Expose a helper for existing password-success handlers to call.
+  window.markTileUnlocked=function(id){ window.unlockSection(id); };
+
+  // If the existing app exposes a password check function, wrap it so a
+  // successful password permanently unlocks that tile.
+  ['checkPassword','verifyPassword','submitPassword'].forEach(function(name){
+    var fn=window[name];
+    if(typeof fn==='function' && !fn.__v481wrapped){
+      var wrapped=function(){
+        var result=fn.apply(this,arguments);
+        try{
+          if(result===true || result==='true'){
+            var id=window.currentPasswordTile || window.activeTile || window.currentTile;
+            if(id) window.unlockSection(id);
+          }
+        }catch(e){}
+        return result;
+      };
+      wrapped.__v481wrapped=true;
+      window[name]=wrapped;
+    }
+  });
+})();
+</script>
+
+
+<script id="v482-cnas-completed-link">
+(function(){
+  var url='https://form.jotform.com/240634871232150';
+  function wireCnaTile(){
+    var candidates=document.querySelectorAll('[id*="cna" i],[class*="cna" i],[data-id*="cna" i],[data-section*="cna" i]');
+    for(var i=0;i<candidates.length;i++){
+      var el=candidates[i];
+      if(/CNAs?\s*(Completed|Done)|CNAs?\s*Completed/i.test(el.textContent) || /cna/i.test(el.id+" "+el.className)){
+        if(/CNAs?\s*(Completed|Done)/i.test(el.textContent) || /completed/i.test(el.textContent)){
+          el.setAttribute('data-cna-completed-link','true');
+          el.style.cursor='pointer';
+          el.addEventListener('click',function(e){
+            if(e.target.closest && e.target.closest('a')) return;
+            window.open(url,'_blank','noopener');
+          });
+          return;
+        }
+      }
+    }
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',wireCnaTile);
+  else wireCnaTile();
+})();
+</script>
+
+
+<section id="recommended-reading-screen" class="page" style="display:none;" aria-hidden="true">
+<button type="button" class="top" onclick="closeRecommendedReading()">← Back</button>
+  <div class="section">
+    <div class="section-head">
+      <h2>Recommended Reading</h2>
+    </div>
+    <div id="recommended-reading-books"><div class="reading-book-row" data-book-index="1"><div class="reading-book-title">1. Entrepreneur Rollercoaster</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="1" onclick="cycleReadingBook(1)">Blank</button></div>
+<div class="reading-book-row" data-book-index="2"><div class="reading-book-title">2. Go for No</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="2" onclick="cycleReadingBook(2)">Blank</button></div>
+<div class="reading-book-row" data-book-index="3"><div class="reading-book-title">3. The Magic of Thinking Big</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="3" onclick="cycleReadingBook(3)">Blank</button></div>
+<div class="reading-book-row" data-book-index="4"><div class="reading-book-title">4. The Slight Edge</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="4" onclick="cycleReadingBook(4)">Blank</button></div>
+<div class="reading-book-row" data-book-index="5"><div class="reading-book-title">5. The Greatest Miracle in the World</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="5" onclick="cycleReadingBook(5)">Blank</button></div>
+<div class="reading-book-row" data-book-index="6"><div class="reading-book-title">6. Acres of Diamonds</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="6" onclick="cycleReadingBook(6)">Blank</button></div>
+<div class="reading-book-row" data-book-index="7"><div class="reading-book-title">7. How I Raised Myself from Failure to Success in Selling</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="7" onclick="cycleReadingBook(7)">Blank</button></div>
+<div class="reading-book-row" data-book-index="8"><div class="reading-book-title">8. How to Win Friends and Influence People</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="8" onclick="cycleReadingBook(8)">Blank</button></div>
+<div class="reading-book-row" data-book-index="9"><div class="reading-book-title">9. Bringing Out The Best in People</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="9" onclick="cycleReadingBook(9)">Blank</button></div>
+<div class="reading-book-row" data-book-index="10"><div class="reading-book-title">10. The Compound Effect</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="10" onclick="cycleReadingBook(10)">Blank</button></div>
+<div class="reading-book-row" data-book-index="11"><div class="reading-book-title">11. The Go-Getter</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="11" onclick="cycleReadingBook(11)">Blank</button></div>
+<div class="reading-book-row" data-book-index="12"><div class="reading-book-title">12. The Master Key to Riches</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="12" onclick="cycleReadingBook(12)">Blank</button></div>
+<div class="reading-book-row" data-book-index="13"><div class="reading-book-title">13. Think and Grow Rich</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="13" onclick="cycleReadingBook(13)">Blank</button></div>
+<div class="reading-book-row" data-book-index="14"><div class="reading-book-title">14. Hung by the Tongue</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="14" onclick="cycleReadingBook(14)">Blank</button></div>
+<div class="reading-book-row" data-book-index="15"><div class="reading-book-title">15. Live the Dream: No More Excuses</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="15" onclick="cycleReadingBook(15)">Blank</button></div>
+<div class="reading-book-row" data-book-index="16"><div class="reading-book-title">16. The Tongue: A Creative Force</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="16" onclick="cycleReadingBook(16)">Blank</button></div>
+<div class="reading-book-row" data-book-index="17"><div class="reading-book-title">17. Skill with People</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="17" onclick="cycleReadingBook(17)">Blank</button></div>
+<div class="reading-book-row" data-book-index="18"><div class="reading-book-title">18. Raving Fans</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="18" onclick="cycleReadingBook(18)">Blank</button></div>
+<div class="reading-book-row" data-book-index="19"><div class="reading-book-title">19. The Win Without Pitching Manifesto</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="19" onclick="cycleReadingBook(19)">Blank</button></div>
+<div class="reading-book-row" data-book-index="20"><div class="reading-book-title">20. Why You Act the Way You Do</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="20" onclick="cycleReadingBook(20)">Blank</button></div>
+<div class="reading-book-row" data-book-index="21"><div class="reading-book-title">21. How to Make People Like You in 90 Seconds or Less</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="21" onclick="cycleReadingBook(21)">Blank</button></div>
+<div class="reading-book-row" data-book-index="22"><div class="reading-book-title">22. Eat That Frog!</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="22" onclick="cycleReadingBook(22)">Blank</button></div>
+<div class="reading-book-row" data-book-index="23"><div class="reading-book-title">23. The Dip</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="23" onclick="cycleReadingBook(23)">Blank</button></div>
+<div class="reading-book-row" data-book-index="24"><div class="reading-book-title">24. The Way of the Warrior Kid</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="24" onclick="cycleReadingBook(24)">Blank</button></div>
+<div class="reading-book-row" data-book-index="25"><div class="reading-book-title">25. Switch on Your Brain Everyday</div><button type="button" class="reading-book-toggle blank" data-reading-toggle="25" onclick="cycleReadingBook(25)">Blank</button></div></div>
+    <div class="recommended-reading-download">
+      <a href="https://www.dropbox.com/scl/fi/f1jaolrng4kivh2vz74lc/1st-Year-Book-PDFs.zip?rlkey=8zjgubn5k1ezp9atmvd54l0rd&st=q0zjsl39&dl=0" target="_blank" rel="noopener">Download the 1st Year Book PDFs</a>
+    </div>
+    
+  </div>
+</section>
+
+<script>
+const READING_STATUS_KEY='businessOwnerReadingStatus_v4';
+const READING_BOOKS=["Entrepreneur Rollercoaster","Go for No","The Magic of Thinking Big","The Slight Edge","The Greatest Miracle in the World","Acres of Diamonds","How I Raised Myself from Failure to Success in Selling","How to Win Friends and Influence People","Bringing Out The Best in People","The Compound Effect","The Go-Getter","The Master Key to Riches","Think and Grow Rich","Hung by the Tongue","Live the Dream: No More Excuses","The Tongue: A Creative Force","Skill with People","Raving Fans","The Win Without Pitching Manifesto","Why You Act the Way You Do","How to Make People Like You in 90 Seconds or Less","Eat That Frog!","The Dip","The Way of the Warrior Kid","Switch on Your Brain Everyday"];
+function getReadingState(){try{return JSON.parse(localStorage.getItem(READING_STATUS_KEY)||'{}')}catch(e){return{}}}
+function saveReadingState(s){localStorage.setItem(READING_STATUS_KEY,JSON.stringify(s))}
+function readingDate(){const d=new Date();return `${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}/${d.getFullYear()}`}
+function readingStatusLabel(x){if(!x)return'Blank';if(x.status==='current')return'Current';if(x.status==='finished')return`Finished<small>${x.completedDate}</small>`;return'Blank'}
+function refreshReadingList(){const s=getReadingState();document.querySelectorAll('[data-reading-toggle]').forEach(b=>{const x=s[Number(b.dataset.readingToggle)];const st=x&&x.status?x.status:'blank';b.className='reading-book-toggle '+st;b.innerHTML=readingStatusLabel(x)})}
+function cycleReadingBook(i){const s=getReadingState(),x=s[i];if(!x||x.status==='blank'){Object.keys(s).forEach(k=>{if(s[k]&&s[k].status==='current')delete s[k]});s[i]={status:'current'};saveReadingState(s);refreshReadingList();return}if(x.status==='current'){s[i]={status:'finished',completedDate:readingDate()};saveReadingState(s);refreshReadingList();return}if(x.status==='finished'){showRemoveFinishDialog(i);return}}
+function showRemoveFinishDialog(i){let m=document.getElementById('reading-finished-modal');if(!m){m=document.createElement('div');m.id='reading-finished-modal';m.className='reading-finished-modal';m.innerHTML='<div class="reading-finished-dialog" role="dialog" aria-modal="true"><h3>Are you sure you want to remove the finish date?</h3><p>This will remove the completion date from your reading history.</p><div class="reading-finished-actions"><button type="button" id="reading-remove-cancel">Cancel</button><button type="button" class="confirm" id="reading-remove-confirm">Remove Date</button></div></div>';document.body.appendChild(m);document.getElementById('reading-remove-cancel').onclick=closeRemoveFinishDialog;document.getElementById('reading-remove-confirm').onclick=confirmRemoveFinish}m.dataset.bookIndex=String(i);document.body.appendChild(m);m.style.display='flex';m.style.visibility='visible';m.style.opacity='1';m.style.pointerEvents='auto';m.style.zIndex='2147483647';m.classList.add('show');m.setAttribute('aria-hidden','false');const cancel=document.getElementById('reading-remove-cancel');if(cancel)cancel.focus()}
+function closeRemoveFinishDialog(){
+  const m=document.getElementById('reading-finished-modal');
+  if(!m)return;
+  m.classList.remove('show');
+  m.setAttribute('aria-hidden','true');
+  m.style.display='none';
+  m.style.visibility='hidden';
+  m.style.opacity='0';
+  m.style.pointerEvents='none';
+}
+function confirmRemoveFinish(){const m=document.getElementById('reading-finished-modal');if(!m)return;const s=getReadingState();delete s[Number(m.dataset.bookIndex)];saveReadingState(s);closeRemoveFinishDialog();refreshReadingList()}
+function getCurrentReadingBook(){const s=getReadingState();for(const k of Object.keys(s))if(s[k]&&s[k].status==='current')return READING_BOOKS[Number(k)-1];return''}
+function getFinishedReadingBooks(){const s=getReadingState();return Object.keys(s).filter(k=>s[k]&&s[k].status==='finished').map(k=>({title:READING_BOOKS[Number(k)-1],date:s[k].completedDate})).filter(x=>x.title).sort((a,b)=>new Date(b.date)-new Date(a.date))}
+function getLastFinishedReadingBook(){const f=getFinishedReadingBooks();return f.length?f[0]:null}
+function readingFinishedOnDate(d){const t=`${String(d.getMonth()+1).padStart(2,'0')}/${String(d.getDate()).padStart(2,'0')}/${d.getFullYear()}`;return getFinishedReadingBooks().some(x=>x.date===t)}
+function drawReadingLines(ctx,x,y,includeFinished){ctx.fillStyle='#0b1220';ctx.font='700 24px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('📚 Reading Progress',x,y);y+=38;ctx.fillStyle='#536174';ctx.font='400 22px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('Currently Reading: '+(getCurrentReadingBook()||'None selected'),x,y);y+=34;if(includeFinished){ctx.fillStyle='#0b1220';ctx.font='700 22px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';ctx.fillText('Completed Books',x,y);y+=32;const f=getFinishedReadingBooks();ctx.fillStyle='#536174';ctx.font='400 20px -apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif';if(!f.length){ctx.fillText('None completed',x,y);y+=28}else f.forEach(b=>{ctx.fillText('• '+b.title+' — '+b.date,x,y);y+=28})}return y}
+function getWeeklyReadingSummary(){return{current:getCurrentReadingBook(),lastFinished:getLastFinishedReadingBook()}}
+function getMonthlyReadingSummary(){return{current:getCurrentReadingBook(),finished:getFinishedReadingBooks()}}
+document.addEventListener('DOMContentLoaded',refreshReadingList);
+</script>
+</div>
+
+<script>
+document.addEventListener('click',function(e){
+  const back=e.target.closest('[onclick*="closeRecommendedReading"]');
+  if(back){ closeReadingRemoveConfirm(); }
+});
+</script>
+
+
+
+
+<section id="outreach-scheduler-screen" class="outreach-screen" aria-hidden="true">
+  <button type="button" class="top" onclick="closeOutreachScheduler()">← Back to 100–300 Points</button>
+  <div class="section"><h2>📇 Outreach Scheduler</h2></div>
+  <div class="section"><h2>1. Import contacts</h2><p class="muted">In Contacts, create or open your “Customer List,” export the list to Files as a .vcf, then choose that file here. Import 30+ contacts in batches if you like; duplicates are skipped automatically.</p><input id="outreach-vcf-file" type="file" accept=".vcf,text/vcard,text/x-vcard"><div class="actions" style="margin-top:8px"><button class="primary" type="button" onclick="importOutreachVCF()">Import selected VCF</button><button type="button" onclick="document.getElementById('outreach-vcf-file').value='';document.getElementById('outreach-import-message').textContent=''">Clear selection</button></div><div id="outreach-import-message" class="muted" style="margin-top:7px"></div></div>
+  <div class="section"><h2>2. Set your weekly plan</h2>
+    <div class="plan-row"><label class="field">Contacts per day<select id="outreach-per-day" onchange="renderPlanEstimate()"><option value="1">1</option><option value="3" selected>3</option><option value="5">5</option><option value="7">7</option><option value="10">10</option></select></label><label class="field">Minutes per call<select id="outreach-minutes"><option value="5" selected>5 min</option><option value="10">10 min</option><option value="15">15 min</option></select></label><div class="field"><span>Prospect pace</span><div id="outreach-plan-estimate" class="muted" style="padding:7px 0">Choose available days</div></div><label class="field">Schedule ahead<select id="outreach-horizon"><option value="7" selected>1 week</option><option value="30">1 month</option></select></label></div>
+    <p class="muted" style="margin:7px 0 6px">Choose the days you are available and each day’s start time. Those selected days determine your weekly pace. New assignments begin tomorrow.</p>
+    <div id="outreach-weekdays" class="weekdays"></div>
+    <div class="actions" style="margin-top:10px"><button class="primary" type="button" onclick="generateOutreachSchedule()">Schedule selected period</button><button type="button" onclick="saveOutreachSettings()">Save plan settings</button></div><div id="outreach-schedule-message" class="error"></div>
+    <p class="muted">Existing appointments stay unchanged.</p>
+  </div>
+  <div class="section"><h2>3. Connect Google Calendar</h2><p class="muted">One-time setup: create a Google OAuth Web client ID for your GitHub Pages site, then paste the client ID below. Never paste a client secret here. Authorization stays with Google; the access token is kept in memory and is not saved in app storage.</p><label class="field">Google OAuth Client ID<input id="google-client-id" type="text" autocomplete="off" placeholder="Google OAuth client ID prefilled"></label><div class="actions" style="margin-top:8px"><button type="button" onclick="saveGoogleClientId()">Save Client ID</button><button class="primary" type="button" onclick="connectGoogleCalendar()">Connect Google Calendar</button><button type="button" onclick="disconnectGoogleCalendar()">Disconnect</button></div><div id="google-calendar-status" class="muted" role="status" style="margin-top:8px">Not connected. Your contacts remain on this device until you choose to create calendar events.</div><p class="muted">When you create events, Google Calendar receives each prospect’s name and phone number in the event details. Events include a 10-minute pop-up reminder. You can revoke access in your Google Account settings.</p></div>
+  <div class="section"><h2>4. Schedule preview</h2><div id="outreach-schedule-summary" class="muted">Import contacts, choose your plan, then preview your schedule.</div><div id="outreach-schedule-list"></div><div class="actions" style="margin-top:9px"><button class="primary" type="button" onclick="createGoogleCalendarEvents()">Approve & create Google Calendar events</button><button type="button" class="clear-preview-button" onclick="clearOutreachPreview()">Clear Preview</button><button type="button" onclick="exportOutreachICS()">Fallback: export .ics file</button><button type="button" onclick="downloadOutreachCSV()">Export customer list (.csv)</button></div><p class="muted">Direct event creation skips appointments already recorded as created by this app. Only future, not-yet-created appointments are sent. The .ics option remains available as a fallback.</p><div id="outreach-export-message" class="muted"></div></div>
+  <div class="section"><button type="button" class="top customer-management-launch" onclick="openCustomerManagement('outreach')">👥 Customer Management <span id="outreach-contact-count" class="pill">0 customers</span></button><div class="muted" style="margin-top:6px">Organize customer categories, record outcomes, and manage callbacks.</div></div>
+  <div id="outreach-privacy-notice" class="outreach-privacy-overlay" aria-hidden="true">
+    <div class="outreach-privacy-dialog" role="dialog" aria-modal="true" aria-labelledby="outreach-privacy-title">
+      <h3 id="outreach-privacy-title">Your contact privacy</h3>
+      <p>Your .vcf contact file is read inside this browser and is not uploaded to a server. Imported contacts, notes, and your schedule are stored on this device. If you choose to create Google Calendar events, the event details you approve are sent to Google Calendar.</p>
+      <button type="button" class="privacy-ok" onclick="acknowledgeOutreachPrivacyNotice()">OK</button>
+    </div>
+  </div>
+</section>
+<section id="customer-management-screen" class="customer-management-screen" aria-hidden="true">
+  <button type="button" class="top" onclick="closeCustomerManagement()">← Back</button>
+  <div class="section"><h2>👥 Customer Management <span id="customer-management-count" class="pill">0 customers</span></h2><div class="muted">Tap a customer name to call or text, update their category, record an outcome, or set a callback.</div></div>
+  <div class="section"><div class="two-col"><label class="field">Category<select id="outreach-filter" onchange="renderOutreachContacts()"><option value="all" selected>All customers</option><option value="subscription">Subscription</option><option value="ditto">Ditto Customer</option><option value="ordering">Ordering Customer</option><option value="followup">Follow Up</option><option value="potential">Potential customer</option><option value="active">Potential + Follow Up</option></select></label><label class="field">Search by name<input id="outreach-search" type="search" placeholder="Search names" oninput="renderOutreachContacts()"></label></div><div id="outreach-contacts-list"></div></div>
+</section>
+<script id="v5-1-outreach-js">
+(function(){
+const OKEY='iboOutreachV5';
+const emptyState=()=>({contacts:[],settings:{frequency:3,perDay:3,minutes:5,days:[1,3,5],times:{1:'09:00',2:'09:00',3:'09:00',4:'09:00',5:'09:00',6:'10:00',0:'10:00'}},assignments:[]});
+let O=load();
+function load(){try{const x=JSON.parse(localStorage.getItem(OKEY)||'null');if(!x)return emptyState();const state=Object.assign(emptyState(),x,{settings:Object.assign(emptyState().settings,x.settings||{})});state.contacts=(state.contacts||[]).map(c=>{if(!c.category){c.category=c.status==='customer'?'ordering':(c.status==='followup'||c.status==='callback'||c.status==='meeting'?'followup':'potential')}return c});return state}catch(e){return emptyState()}}
+function save(){try{localStorage.setItem(OKEY,JSON.stringify(O));return true}catch(e){document.getElementById('outreach-schedule-message').textContent='Could not save: this browser may be out of storage space.';return false}}
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const phoneKey=p=>String(p||'').replace(/\D/g,'');
+const uid=()=>('c'+Date.now().toString(36)+Math.random().toString(36).slice(2,8));
+function unescapeVcard(s){return String(s||'').replace(/\\n/gi,' ').replace(/\\,/g,',').replace(/\\;/g,';').replace(/\\\\/g,'\\').trim()}
+function parseVcards(raw){
+  raw=raw.replace(/^\uFEFF/,'').replace(/\r\n[ \t]/g,'').replace(/\n[ \t]/g,'');
+  const blocks=raw.split(/BEGIN:VCARD/i).slice(1).map(x=>x.split(/END:VCARD/i)[0]);const out=[];
+  for(const block of blocks){let name='',nField='',phones=[];for(const line of block.split(/\r?\n/)){const idx=line.indexOf(':');if(idx<0)continue;const head=line.slice(0,idx),val=line.slice(idx+1);const key=head.split(';')[0].toUpperCase();if(key==='FN')name=unescapeVcard(val);else if(key==='N')nField=val;if(key==='TEL'){let p=val.trim();if(p.toUpperCase().startsWith('TEL'))continue;if(p.startsWith('tel:'))p=p.slice(4);p=unescapeVcard(p);if(p&&!phones.includes(p))phones.push(p)}}
+    if(!name&&nField){const parts=nField.split(';').map(unescapeVcard);name=[parts[1],parts[0],parts[2],parts[3],parts[4]].filter(Boolean).join(' ').trim()}
+    name=name.replace(/\s+/g,' ').trim();if(!name)name='Unnamed contact';if(!phones.length)out.push({name,phone:''});else phones.forEach(phone=>out.push({name,phone}));
+  }return out;
+}
+const OUTREACH_PRIVACY_NOTICE_KEY='iboOutreachPrivacyNoticeAcknowledgedV5_1_1';
+window.acknowledgeOutreachPrivacyNotice=function(){try{localStorage.setItem(OUTREACH_PRIVACY_NOTICE_KEY,'1')}catch(e){}const n=$('outreach-privacy-notice');if(n){n.classList.remove('show');n.setAttribute('aria-hidden','true')}};
+window.showOutreachScheduler=function(){document.querySelectorAll('body > *').forEach(el=>{if(el.tagName!=='SCRIPT'){el.dataset.outreachLayerDisplay=el.style.display||'';el.style.display='none'}});const s=$('outreach-scheduler-screen');s.style.display='block';s.setAttribute('aria-hidden','false');window.scrollTo(0,0);loadSettingsToUI();renderOutreachAll();const n=$('outreach-privacy-notice');let acknowledged=false;try{acknowledged=localStorage.getItem(OUTREACH_PRIVACY_NOTICE_KEY)==='1'}catch(e){}if(n&&!acknowledged){n.classList.add('show');n.setAttribute('aria-hidden','false')}};
+window.closeOutreachScheduler=function(){const s=$('outreach-scheduler-screen');s.style.display='none';s.setAttribute('aria-hidden','true');document.querySelectorAll('[data-outreach-layer-display]').forEach(el=>{el.style.display=el.dataset.outreachLayerDisplay;delete el.dataset.outreachLayerDisplay});show('pv');window.scrollTo(0,0)};
+let customerManagementReturn='pv';window.openCustomerManagement=function(from){customerManagementReturn=from||'pv';const m=$('customer-management-screen');if(customerManagementReturn==='outreach'){$('outreach-scheduler-screen').style.display='none';}else{document.querySelectorAll('body > *').forEach(el=>{if(el.tagName!=='SCRIPT'&&el!==m){el.dataset.customerLayerDisplay=el.style.display||'';el.style.display='none'}})}m.style.display='block';m.setAttribute('aria-hidden','false');$('outreach-filter').value='all';$('outreach-search').value='';renderOutreachContacts();window.scrollTo(0,0)};window.closeCustomerManagement=function(){const m=$('customer-management-screen');m.style.display='none';m.setAttribute('aria-hidden','true');if(customerManagementReturn==='outreach'){$('outreach-scheduler-screen').style.display='block';window.scrollTo(0,0);return}document.querySelectorAll('[data-customer-layer-display]').forEach(el=>{el.style.display=el.dataset.customerLayerDisplay;delete el.dataset.customerLayerDisplay});show('pv');window.scrollTo(0,0)};
+window.importOutreachVCF=async function(){const file=$('outreach-vcf-file').files[0];const msg=$('outreach-import-message');msg.textContent='';if(!file){msg.textContent='Choose a .vcf file first.';return}try{const raw=await file.text();const parsed=parseVcards(raw);let added=0,duplicates=0,withoutPhone=0;for(const p of parsed){if(!p.phone)withoutPhone++;const pk=phoneKey(p.phone);const duplicate=O.contacts.some(c=>(pk&&phoneKey(c.phone)===pk)||(!pk&&!c.phone&&c.name.toLowerCase()===p.name.toLowerCase()));if(duplicate){duplicates++;continue}O.contacts.push({id:uid(),name:p.name,phone:p.phone,category:'potential',status:'active',notes:'',history:[],callbackDate:'',callbackDateTime:'',followupDateTime:'',cnaDateTime:'',meetingDate:'',createdAt:new Date().toISOString()});added++}save();msg.textContent=`Read ${parsed.length} contact record(s) from ${file.name}. Added ${added}; skipped ${duplicates} duplicate(s). ${withoutPhone?withoutPhone+' record(s) had no phone number.':''}`;$('outreach-vcf-file').value='';renderOutreachAll()}catch(e){msg.textContent='Could not read this file. Please select the exported .vcf file again.'}};
+function hourLabel(hour){const h=hour%12||12;return h+(hour<12?'am':'pm')}
+function buildWeekdayControls(){const names={1:'M:',2:'T:',3:'W:',4:'T:',5:'F:',6:'S:',0:'S:'};const full={1:'Monday',2:'Tuesday',3:'Wednesday',4:'Thursday',5:'Friday',6:'Saturday',0:'Sunday'};const host=$('outreach-weekdays');host.innerHTML=[1,2,3,4,5,6,0].map(day=>`<div class="weekday-row"><input type="checkbox" id="outreach-day-${day}" value="${day}" aria-label="${full[day]}" onchange="renderPlanEstimate()"><label for="outreach-day-${day}" title="${full[day]}">${names[day]}</label><select id="outreach-time-${day}" aria-label="${full[day]} start hour" title="${full[day]} start hour">${Array.from({length:24},(_,h)=>`<option value="${String(h).padStart(2,'0')}:00">${hourLabel(h)}</option>`).join('')}</select></div>`).join('')}
+function loadSettingsToUI(){const s=O.settings;$('outreach-per-day').value=String([1,3,5,7,10].includes(Number(s.perDay))?Number(s.perDay):3);$('outreach-minutes').value=String([5,10,15].includes(Number(s.minutes))?Number(s.minutes):5);if($('outreach-horizon'))$('outreach-horizon').value=String(Number(s.horizonDays)===30?30:7);buildWeekdayControls();for(const day of [0,1,2,3,4,5,6]){$('outreach-day-'+day).checked=(s.days||[]).includes(day);const saved=(s.times||{})[day]||((day===0||day===6)?'10:00':'09:00');$('outreach-time-'+day).value=/^\d{2}:/.test(saved)?saved.slice(0,2)+':00':'09:00'}}
+function readSettings(){const perDay=[1,3,5,7,10].includes(Number($('outreach-per-day').value))?Number($('outreach-per-day').value):3,minutes=[5,10,15].includes(Number($('outreach-minutes').value))?Number($('outreach-minutes').value):5;const days=[0,1,2,3,4,5,6].filter(d=>$('outreach-day-'+d).checked);const times={};for(const d of [0,1,2,3,4,5,6])times[d]=$('outreach-time-'+d).value||'09:00';return{frequency:days.length,perDay,minutes,days,times,horizonDays:Number($('outreach-horizon')?.value)===30?30:7}}
+window.renderPlanEstimate=function(){const el=$('outreach-plan-estimate');if(!el)return;const days=[0,1,2,3,4,5,6].filter(d=>{const c=$('outreach-day-'+d);return c&&c.checked}).length;const perDay=Number($('outreach-per-day').value)||3;const prospects=O.contacts.filter(c=>(c.category||'potential')==='potential').length;const pace=days*perDay;const weeks=pace?Math.ceil(prospects/pace):0;el.textContent=days?`${weeks} week${weeks===1?'':'s'} at current pace`:'Choose available days';};
+window.saveOutreachSettings=function(){const s=readSettings();if(!s.days.length){$('outreach-schedule-message').textContent='Select at least one available weekday.';return}O.settings=s;save();renderPlanEstimate();$('outreach-schedule-message').textContent=`Weekly plan saved: ${s.days.length} day(s) per week.`};
+function localDate(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function nextDateForDay(day,time,startDate){const [hh,mm]=time.split(':').map(Number);const d=new Date(startDate+'T12:00:00');d.setHours(0,0,0,0);let delta=(day-d.getDay()+7)%7;let candidate=new Date(d);candidate.setDate(candidate.getDate()+delta);candidate.setHours(hh||0,mm||0,0,0);if(candidate<=new Date())candidate.setDate(candidate.getDate()+7);return candidate}
+function stamp(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}T${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}:00`}
+function getContact(id){return O.contacts.find(c=>c.id===id)}
+function isOutreachEligible(c){return c&&['potential','followup'].includes(c.category||'potential')}
+function categoryLabel(c){return ({subscription:'Subscription',ditto:'Ditto Customer',ordering:'Ordering Customer',followup:'Follow Up',potential:'Potential customer',flushed:'Flushed'})[c.category||'potential']||'Potential customer'}
+function isPriorityAssignment(a){return ['callback','followup','cna'].includes(a.type)}
+function intervalsOverlap(startA,durationA,startB,durationB){return startA<startB+durationB*60000&&startA+durationA*60000>startB}
+function findFreeOutreachStart(candidate,minutes,excludeId){let dt=new Date(candidate);for(let guard=0;guard<500;guard++){const collision=O.assignments.map(a=>({a,start:new Date(a.start).getTime(),duration:Number(a.minutes||5)})).filter(x=>x.a.id!==excludeId&&Number.isFinite(x.start)&&intervalsOverlap(dt.getTime(),minutes,x.start,x.duration)).sort((x,y)=>x.start-y.start)[0];if(!collision)return dt;dt=new Date(collision.start+collision.duration*60000)}return dt}
+function reflowOutreachAroundCallbacks(){const movable=O.assignments.filter(a=>!isPriorityAssignment(a)&&!a.completedAt).sort((a,b)=>new Date(a.start)-new Date(b.start));for(const a of movable){const original=new Date(a.start),free=findFreeOutreachStart(original,Number(a.minutes||5),a.id);if(free.getTime()!==original.getTime()){a.start=stamp(free);a.updatedAt=new Date().toISOString();if(a.googleEventId)a.calendarUpdatePending=true;const c=getContact(a.contactId);if(c){c.history=c.history||[];c.history.push({date:new Date().toISOString(),action:'Outreach time adjusted for callback',detail:stamp(free)})}}}}
+window.generateOutreachSchedule=function(){const msg=$('outreach-schedule-message');msg.textContent='';const s=readSettings();if(!s.days.length){msg.textContent='Please select at least one available weekday.';return}O.settings=s;const tomorrow=new Date();tomorrow.setHours(0,0,0,0);tomorrow.setDate(tomorrow.getDate()+1);const end=new Date(tomorrow);end.setDate(end.getDate()+s.horizonDays);const start=localDate(tomorrow);let unassigned=O.contacts.filter(c=>isOutreachEligible(c)&&!O.assignments.some(a=>a.contactId===c.id));for(let i=unassigned.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[unassigned[i],unassigned[j]]=[unassigned[j],unassigned[i]]}let added=0;for(let dayDate=new Date(tomorrow);dayDate<end&&unassigned.length;dayDate.setDate(dayDate.getDate()+1)){if(!s.days.includes(dayDate.getDay()))continue;const dayStart=new Date(dayDate);const [hh,mm]=String(s.times[dayDate.getDay()]||'09:00').split(':').map(Number);dayStart.setHours(hh||0,mm||0,0,0);let candidate=dayStart,placed=0;while(placed<s.perDay&&unassigned.length){const dt=findFreeOutreachStart(candidate,s.minutes);if(localDate(dt)!==localDate(dayDate))break;const contact=unassigned.shift();const assignment={id:uid(),contactId:contact.id,start:stamp(dt),minutes:s.minutes,type:contact.category==='followup'?'followup':'outreach',createdAt:new Date().toISOString(),calendarExported:false};O.assignments.push(assignment);contact.history=contact.history||[];contact.history.push({date:new Date().toISOString(),action:'Scheduled outreach',detail:stamp(dt)});candidate=new Date(dt.getTime()+s.minutes*60000);placed++;added++}}save();const period=s.horizonDays===30?'month (30 days)':'week (7 days)';msg.textContent=added?`Scheduled ${added} new appointment(s) for the next ${period}. The preview below shows only the next 7 days; all appointments in the selected period remain available for calendar creation or .ics export.`:`No new appointments were scheduled for the next ${period}. There may be no unassigned active customers or no available slots in that period.`;renderOutreachAll()};
+function fmtDate(iso){const d=new Date(iso);return d.toLocaleString(undefined,{weekday:'short',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'})}
+function upcomingAssignments(){return O.assignments.map(a=>({a,c:getContact(a.contactId)})).filter(x=>x.c).sort((x,y)=>new Date(x.a.start)-new Date(y.a.start))}
+function renderSchedule(){const list=$('outreach-schedule-list'),sum=$('outreach-schedule-summary'),allRows=upcomingAssignments();const now=new Date(),previewEnd=new Date(now);previewEnd.setDate(previewEnd.getDate()+7);const rows=allRows.filter(({a})=>{const d=new Date(a.start);return d>=now&&d<previewEnd});const active=O.contacts.filter(isOutreachEligible).length;const unscheduled=O.contacts.filter(c=>isOutreachEligible(c)&&!O.assignments.some(a=>a.contactId===c.id)).length;const created=O.assignments.filter(a=>a.googleEventId).length;const pending=O.assignments.filter(a=>(!a.googleEventId&&!a.calendarExported||a.calendarUpdatePending)&&new Date(a.start)>now).length;sum.textContent=`Showing next 7 days: ${rows.length} appointment(s) • ${allRows.length} total planned • ${created} created in Google Calendar • ${pending} future event(s) waiting to be created • ${unscheduled} active customer(s) not yet scheduled.`;renderPlanEstimate();if(!rows.length){list.innerHTML='<div class="empty">No appointments in the next 7 days. If you scheduled a month, later appointments remain scheduled and can still be sent to Google Calendar or exported.</div>';return}list.innerHTML=rows.slice(0,80).map(({a,c})=>`<div class="schedule-row"><div class="schedule-time">${esc(fmtDate(a.start))}</div><div style="flex:1;min-width:0"><b>${esc(c.name)}</b><div class="muted">${esc(a.type==='callback'?'Customer callback':a.type==='followup'?'Customer follow up':a.type==='cna'?'CNA scheduled':'Outreach call')} • ${esc(c.phone||'No phone number')}</div></div><button type="button" onclick="openOutreachContact('${c.id}')">Open</button></div>`).join('')+(rows.length>80?`<div class="muted">Showing first 80 of ${rows.length} appointments in the next 7 days.</div>`:'')}
+window.openOutreachContact=function(id){openCustomerManagement('outreach');$('outreach-filter').value='all';$('outreach-search').value='';renderOutreachContacts();const el=document.getElementById('outreach-contact-'+id);if(el)el.scrollIntoView({behavior:'smooth',block:'center'})};
+function assignmentForCallback(c){return O.assignments.find(a=>a.contactId===c.id&&a.type==='callback')}
+function syncCallbackAssignment(c){
+  const raw=c.callbackDateTime|| (c.callbackDate?c.callbackDate+'T18:00':'');
+  let a=assignmentForCallback(c);
+  if(!raw){if(a&&!a.googleEventId&&!a.calendarExported)O.assignments=O.assignments.filter(x=>x.id!==a.id);save();return}
+  const dt=new Date(raw);if(Number.isNaN(dt.getTime()))return;
+  if(!a){a={id:uid(),contactId:c.id,start:stamp(dt),minutes:5,type:'callback',createdAt:new Date().toISOString(),calendarExported:false};O.assignments.push(a)}
+  else {a.start=stamp(dt);a.type='callback';a.minutes=5;a.updatedAt=new Date().toISOString();if(a.googleEventId){a.calendarUpdatePending=true;if(googleAccessToken&&Date.now()<googleTokenExpiresAt){googleApi('/calendars/primary/events/'+encodeURIComponent(a.googleEventId),{method:'PATCH',body:JSON.stringify({summary:'Customer callback — '+c.name,description:'Customer follow-up/callback: '+c.name+'\nPhone: '+(c.phone||'Not provided')+'\nUpdated by IBO App.',start:{dateTime:dt.toISOString(),timeZone:Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC'},end:{dateTime:new Date(dt.getTime()+5*60000).toISOString(),timeZone:Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC'},reminders:{useDefault:false,overrides:[{method:'popup',minutes:10}]}})}).then(()=>{a.calendarUpdatePending=false;save();renderSchedule()}).catch(()=>{const msg=$('outreach-export-message');if(msg)msg.textContent='Callback time is saved on this device. Reconnect Google Calendar and approve the update from Schedule Preview.'})}}}
+  save();
+}
+window.resetCallbackDateTime=async function(id){
+  const c=getContact(id);if(!c)return;
+  const a=assignmentForCallback(c);
+  // Clear the customer record and visible field immediately, regardless of calendar connection.
+  c.callbackDateTime='';c.callbackDate='';
+  const input=$('callback-datetime-'+id);if(input){input.value='';input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));}
+  let calendarWarning='';
+  if(a&&a.googleEventId){
+    if(googleAccessToken&&Date.now()<googleTokenExpiresAt){
+      try{await googleApi('/calendars/primary/events/'+encodeURIComponent(a.googleEventId),{method:'DELETE'});}
+      catch(e){calendarWarning=' The callback was cleared in the app, but Google Calendar could not confirm deletion; please check Google Calendar.'}
+    }else{calendarWarning=' The callback was cleared in the app, but its previously created Google Calendar event could not be deleted while disconnected; remove that event manually if needed.'}
+  }
+  if(a)O.assignments=O.assignments.filter(x=>x.id!==a.id);
+  save();renderOutreachAll();
+  const msg=$('outreach-export-message');if(msg)msg.textContent='Callback date and time reset.'+calendarWarning;
+};
+function nextAvailablePlanTime(){const s=readSettings();if(!s.days.length)return null;const now=new Date();for(let offset=0;offset<15;offset++){const d=new Date(now);d.setDate(d.getDate()+offset);if(!s.days.includes(d.getDay()))continue;const [hh,mm]=String(s.times[d.getDay()]||'09:00').split(':').map(Number);d.setHours(hh||0,mm||0,0,0);if(d>now)return d}return null}
+function priorityTypeFor(kind){return kind==='cna'?'cna':'followup'}
+function priorityAssignmentFor(c,kind){return O.assignments.find(a=>a.contactId===c.id&&a.type===priorityTypeFor(kind))}
+window.openCustomerPrioritySchedule=function(id,kind){const c=getContact(id);if(!c)return;c.history=c.history||[];if(kind==='followup'){c.category='followup';c.status='followup';if(!c.history.some(h=>h.action==='Follow Up'&&Date.now()-new Date(h.date).getTime()<5000))c.history.push({date:new Date().toISOString(),action:'Follow Up',detail:'Scheduling opened'})}else{c.cnaScheduled=true;if(!c.history.some(h=>h.action==='CNA Scheduled'&&Date.now()-new Date(h.date).getTime()<5000))c.history.push({date:new Date().toISOString(),action:'CNA Scheduled',detail:'Scheduling opened'})}c.priorityScheduleOpen=kind;save();renderOutreachAll();const card=$('outreach-contact-'+id);if(card){card.open=true;const input=$(kind+'-datetime-'+id);if(input)input.focus()}};
+window.saveCustomerPrioritySchedule=function(id,kind){const c=getContact(id);if(!c)return;const input=$(kind+'-datetime-'+id),raw=input&&input.value;if(!raw){const msg=$('outreach-export-message');if(msg)msg.textContent='Choose a date and time before saving this priority appointment.';return}const dt=new Date(raw);if(Number.isNaN(dt.getTime()))return;const type=priorityTypeFor(kind);let a=priorityAssignmentFor(c,kind);if(!a){a={id:uid(),contactId:c.id,start:stamp(dt),minutes:Number(O.settings.minutes||5),type,createdAt:new Date().toISOString(),calendarExported:false};O.assignments.push(a)}else{a.start=stamp(dt);a.minutes=Number(a.minutes||O.settings.minutes||5);a.updatedAt=new Date().toISOString();if(a.googleEventId)a.calendarUpdatePending=true}c[kind==='cna'?'cnaDateTime':'followupDateTime']=raw;c.priorityScheduleOpen='';c.history=c.history||[];c.history.push({date:new Date().toISOString(),action:kind==='cna'?'CNA appointment scheduled':'Customer follow up scheduled',detail:stamp(dt)});reflowOutreachAroundCallbacks();save();renderOutreachAll();const msg=$('outreach-export-message');if(msg)msg.textContent=(kind==='cna'?'CNA appointment':'Customer follow-up')+' saved at '+dt.toLocaleString()+'. It has priority over regular outreach appointments.'};
+window.resetCustomerPrioritySchedule=async function(id,kind){const c=getContact(id);if(!c)return;const a=priorityAssignmentFor(c,kind);c[kind==='cna'?'cnaDateTime':'followupDateTime']='';c.priorityScheduleOpen=kind;let warning='';if(a&&a.googleEventId){if(googleAccessToken&&Date.now()<googleTokenExpiresAt){try{await googleApi('/calendars/primary/events/'+encodeURIComponent(a.googleEventId),{method:'DELETE'})}catch(e){warning=' Google Calendar could not confirm deletion; please check your calendar.'}}else warning=' The existing Google Calendar event could not be deleted while disconnected; remove it manually if needed.'}if(a)O.assignments=O.assignments.filter(x=>x.id!==a.id);save();renderOutreachAll();const card=$('outreach-contact-'+id);if(card)card.open=true;const msg=$('outreach-export-message');if(msg)msg.textContent=(kind==='cna'?'CNA scheduled time':'Follow-up time')+' reset.'+warning};
+window.updateOutreachContact=function(id,key,value){const c=getContact(id);if(!c)return;if(key==='category'){c.category=value;c.status=value==='ordering'?'customer':(value==='followup'?'followup':'active');c.history=c.history||[];c.history.push({date:new Date().toISOString(),action:'Category changed',detail:categoryLabel(c)})}else{c[key]=value;if(key==='callbackDate'&&value)c.category='followup';if(key==='callbackDateTime'&&value)c.category='followup';if(key==='status'){c.category=value==='customer'?'ordering':(value==='followup'||value==='callback'||value==='meeting'?'followup':'potential')}}save();if(key==='callbackDateTime')syncCallbackAssignment(c);renderOutreachCount();renderOutreachContacts();renderSchedule()};
+let outreachConfirmCallback=null;
+function closeOutreachConfirm(){const m=$('outreach-confirm-modal');if(!m)return;m.classList.remove('show');m.setAttribute('aria-hidden','true');m.style.display='none';outreachConfirmCallback=null}
+function showOutreachConfirm(title,message,confirmLabel,onConfirm){let m=$('outreach-confirm-modal');if(!m){m=document.createElement('div');m.id='outreach-confirm-modal';m.className='outreach-confirm-modal';m.setAttribute('aria-hidden','true');m.innerHTML='<div class="outreach-confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="outreach-confirm-title"><h3 id="outreach-confirm-title"></h3><p id="outreach-confirm-message"></p><div class="outreach-confirm-actions"><button type="button" id="outreach-confirm-cancel">Cancel</button><button type="button" class="confirm" id="outreach-confirm-accept"></button></div></div>';document.body.appendChild(m);$('outreach-confirm-cancel').addEventListener('click',closeOutreachConfirm);$('outreach-confirm-accept').addEventListener('click',function(){const fn=outreachConfirmCallback;closeOutreachConfirm();if(typeof fn==='function')fn()});m.addEventListener('click',function(e){if(e.target===m)closeOutreachConfirm()})} $('outreach-confirm-title').textContent=title;$('outreach-confirm-message').textContent=message;$('outreach-confirm-accept').textContent=confirmLabel;outreachConfirmCallback=onConfirm;m.style.display='flex';m.style.visibility='visible';m.style.opacity='1';m.style.pointerEvents='auto';m.classList.add('show');m.setAttribute('aria-hidden','false');$('outreach-confirm-cancel').focus()}
+window.clearOutreachPreview=function(){const removable=O.assignments.filter(a=>!isPriorityAssignment(a)&&!a.googleEventId&&!a.calendarExported);if(!removable.length){$('outreach-export-message').textContent='There are no uncreated preview appointments to clear. Events created in Google Calendar or marked as exported are kept to help prevent duplicates.';return}showOutreachConfirm('Clear schedule preview?',`Remove ${removable.length} uncreated outreach appointment(s)? Customer callbacks, scheduled follow-ups, and scheduled CNAs will be preserved until reset from their customer cards, and appointments already created in Google Calendar or exported will be kept.`, 'Clear Preview',function(){const ids=new Set(removable.map(a=>a.id));O.assignments=O.assignments.filter(a=>!ids.has(a.id));save();renderOutreachAll();$('outreach-export-message').textContent=`Cleared ${removable.length} uncreated outreach preview appointment(s). Priority callbacks, follow-ups, and CNA appointments were preserved.`})};
+window.logOutreachAction=function(id,action){const c=getContact(id);if(!c)return;if(action==='Flush Contact'){showOutreachConfirm('Flush this customer?',`Permanently delete ${c.name} from Customer Management and remove their local scheduled assignments? Any Google Calendar events already created for this person will remain in your calendar.`, 'Flush Contact',function(){O.contacts=O.contacts.filter(x=>x.id!==id);O.assignments=O.assignments.filter(a=>a.contactId!==id);save();renderOutreachAll();});return}c.history=c.history||[];c.history.push({date:new Date().toISOString(),action,detail:''});if(action==='Follow Up'){openCustomerPrioritySchedule(id,'followup');return}if(action==='CNA Scheduled'){openCustomerPrioritySchedule(id,'cna');return}if(action==='Order Placed'){c.category='ordering';c.status='customer'}if(action==='CNA Completed')c.cnaCompleted=true;save();renderOutreachAll()};
+function renderOutreachCount(){const count=`${O.contacts.length} customer${O.contacts.length===1?'':'s'}`;$('outreach-contact-count').textContent=count;$('customer-management-count').textContent=count}
+window.callOutreachContact=function(id,mode){const c=getContact(id);if(!c||!c.phone)return;const phone=String(c.phone).replace(/[^0-9+*#,;]/g,'');window.location.href=(mode==='text'?'sms:':'tel:')+phone};
+window.renderOutreachContacts=function(){const list=$('outreach-contacts-list');if(!list)return;const openIds=Array.from(list.querySelectorAll('details[open]')).map(el=>el.id),filter=$('outreach-filter').value,query=$('outreach-search').value.trim().toLowerCase();let cs=O.contacts.filter(c=>{const cat=c.category||'potential';if(filter==='active'&&!['potential','followup'].includes(cat))return false;if(['potential','ordering','ditto','followup','subscription'].includes(filter)&&cat!==filter)return false;if(query&&!String(c.name||'').toLowerCase().includes(query))return false;return true});const categoryOrder={subscription:0,ditto:1,ordering:2,followup:3,potential:4};cs.sort((a,b)=>(categoryOrder[a.category||'potential']??4)-(categoryOrder[b.category||'potential']??4)||String(a.name||'').localeCompare(String(b.name||'')));if(!cs.length){list.innerHTML='<div class="empty">No customers match this view.</div>';return}list.innerHTML=cs.map(c=>{const cat=c.category||'potential',last=(c.history||[]).slice(-4).reverse();return `<details class="customer-card ${cat==='ordering'?'status-ordering':''}" id="outreach-contact-${c.id}"><summary>${esc(c.name)}</summary><div class="customer-options"><div class="customer-actions">${c.phone?`<button type="button" class="call-button" onclick="callOutreachContact('${c.id}','call')">📞 Call</button><button type="button" class="text-button" onclick="callOutreachContact('${c.id}','text')">💬 Text</button>`:'<span class="muted">No phone number</span>'}<button type="button" onclick="logOutreachAction('${c.id}','Received Referral')">Received Referral</button><button type="button" onclick="logOutreachAction('${c.id}','Voicemail')">Voicemail</button><button type="button" onclick="openCustomerPrioritySchedule('${c.id}','cna')">CNA Scheduled</button><button type="button" onclick="openCustomerPrioritySchedule('${c.id}','followup')">Follow Up</button><button type="button" onclick="logOutreachAction('${c.id}','CNA Completed')">CNA Completed</button><button type="button" onclick="logOutreachAction('${c.id}','Order Placed')">Order Placed</button><button type="button" class="flush-button" onclick="logOutreachAction('${c.id}','Flush Contact')">Flush Contact</button></div><div class="customer-fields"><label class="field">Customer category<select onchange="updateOutreachContact('${c.id}','category',this.value)"><option value="subscription" ${cat==='subscription'?'selected':''}>Subscription</option><option value="ditto" ${cat==='ditto'?'selected':''}>Ditto Customer</option><option value="ordering" ${cat==='ordering'?'selected':''}>Ordering Customer</option><option value="followup" ${cat==='followup'?'selected':''}>Follow Up</option><option value="potential" ${cat==='potential'?'selected':''}>Potential customer</option></select></label>${c.priorityScheduleOpen==='followup'?`<div class="priority-schedule-editor"><label class="field">Follow-up date & time<input id="followup-datetime-${c.id}" type="datetime-local" value="${esc(c.followupDateTime||'')}"></label><div class="priority-schedule-actions"><button type="button" onclick="saveCustomerPrioritySchedule('${c.id}','followup')">Save</button><button type="button" onclick="resetCustomerPrioritySchedule('${c.id}','followup')">Reset</button></div></div>`:''}${c.priorityScheduleOpen==='cna'?`<div class="priority-schedule-editor"><label class="field">CNA date & time<input id="cna-datetime-${c.id}" type="datetime-local" value="${esc(c.cnaDateTime||'')}"></label><div class="priority-schedule-actions"><button type="button" onclick="saveCustomerPrioritySchedule('${c.id}','cna')">Save</button><button type="button" onclick="resetCustomerPrioritySchedule('${c.id}','cna')">Reset</button></div></div>`:''}</div><label class="field" style="margin-top:7px">Notes<textarea placeholder="Add customer notes…" onchange="updateOutreachContact('${c.id}','notes',this.value)">${esc(c.notes||'')}</textarea></label><div class="muted customer-history">${last.length?last.map(h=>`${esc(new Date(h.date).toLocaleDateString())}: ${esc(h.action)}${h.detail?' — '+esc(h.detail):''}`).join('<br>'):'No actions recorded yet.'}</div></div></details>`}).join('');openIds.forEach(id=>{const el=document.getElementById(id);if(el)el.open=true})};
+function statusLabel(s){return({'active':'Potential customer','followup':'Follow Up','callback':'Follow Up','meeting':'Follow Up','customer':'Ordering Customer','archived':'Flushed'})[s]||s}
+function renderOutreachAll(){renderOutreachCount();renderSchedule();renderOutreachContacts()}
+const GOOGLE_CLIENT_KEY='iboGoogleCalendarClientIdV5';
+const DEFAULT_GOOGLE_CLIENT_ID='812613546660-jf4aj1vtnr4a2k0d6263cjd66334g0t9.apps.googleusercontent.com';
+let googleAccessToken=null,googleTokenExpiresAt=0,googleGISLoading=null;
+function googleClientId(){return ($('google-client-id').value||localStorage.getItem(GOOGLE_CLIENT_KEY)||DEFAULT_GOOGLE_CLIENT_ID).trim()}
+window.saveGoogleClientId=function(){const id=$('google-client-id').value.trim();if(!id){$('google-calendar-status').textContent='Paste the OAuth Client ID first.';return}if(!/\.apps\.googleusercontent\.com$/.test(id)){$('google-calendar-status').textContent='That does not look like a Google OAuth Web client ID. It usually ends with .apps.googleusercontent.com.';return}localStorage.setItem(GOOGLE_CLIENT_KEY,id);$('google-calendar-status').textContent='Client ID saved on this device. Next, tap Connect Google Calendar.'};
+function ensureGoogleIdentity(){if(window.google&&google.accounts&&google.accounts.oauth2)return Promise.resolve();if(googleGISLoading)return googleGISLoading;googleGISLoading=new Promise((resolve,reject)=>{let sc=document.querySelector('script[data-google-identity]');if(sc){sc.addEventListener('load',resolve,{once:true});sc.addEventListener('error',reject,{once:true});return}sc=document.createElement('script');sc.src='https://accounts.google.com/gsi/client';sc.async=true;sc.defer=true;sc.dataset.googleIdentity='1';sc.onload=resolve;sc.onerror=()=>reject(new Error('Could not load Google authorization. Check your internet connection and try again.'));document.head.appendChild(sc)});return googleGISLoading}
+function getGoogleToken(promptValue){return new Promise(async(resolve,reject)=>{try{await ensureGoogleIdentity();const id=googleClientId();if(!id)throw new Error('Enter and save your Google OAuth Client ID first.');const client=google.accounts.oauth2.initTokenClient({client_id:id,scope:'https://www.googleapis.com/auth/calendar.events',include_granted_scopes:true,prompt:promptValue||'',callback:resp=>{if(resp&&resp.access_token){googleAccessToken=resp.access_token;googleTokenExpiresAt=Date.now()+(Number(resp.expires_in||3600)*1000)-60000;$('google-calendar-status').textContent='Connected to Google Calendar for this session. You can now create approved events.';resolve(googleAccessToken)}else reject(new Error((resp&&resp.error_description)||'Google authorization did not complete.'))},error_callback:err=>reject(new Error((err&&err.message)||'Google authorization window was closed or blocked.'))});client.requestAccessToken({prompt:promptValue||''})}catch(e){reject(e)}})}
+window.connectGoogleCalendar=async function(){const status=$('google-calendar-status');try{const id=$('google-client-id').value.trim()||localStorage.getItem(GOOGLE_CLIENT_KEY)||'';$('google-client-id').value=id;if(!id){status.textContent='First create a Google OAuth Web client ID, then paste it here.';return}if(id!==localStorage.getItem(GOOGLE_CLIENT_KEY))localStorage.setItem(GOOGLE_CLIENT_KEY,id);status.textContent='Opening Google authorization…';await getGoogleToken('consent')}catch(e){status.textContent='Could not connect: '+e.message+' Check the OAuth setup steps in README.md and confirm your GitHub Pages origin is authorized.'}};
+window.disconnectGoogleCalendar=function(){googleAccessToken=null;googleTokenExpiresAt=0;$('google-calendar-status').textContent='Disconnected from Google Calendar on this device. Previously created calendar events remain in Google Calendar.'};
+async function googleApi(path,options={}){if(!googleAccessToken||Date.now()>=googleTokenExpiresAt)throw new Error('Your Google authorization expired. Tap Connect Google Calendar again, then retry.');const response=await fetch('https://www.googleapis.com/calendar/v3'+path,{...options,headers:{Authorization:'Bearer '+googleAccessToken,'Content-Type':'application/json',...(options.headers||{})}});let data={};try{data=await response.json()}catch(e){}if(!response.ok){if(response.status===401){googleAccessToken=null;googleTokenExpiresAt=0}throw new Error((data.error&&data.error.message)||('Google Calendar returned HTTP '+response.status))}return data}
+window.createGoogleCalendarEvents=async function(){const msg=$('outreach-export-message');const clientId=googleClientId();if(!clientId){msg.textContent='First set up and save a Google OAuth Client ID, then connect Google Calendar.';return}if(!googleAccessToken||Date.now()>=googleTokenExpiresAt){msg.textContent='Connect Google Calendar first. After authorization, tap this button again to create events.';return}const rows=upcomingAssignments().filter(({a})=>(!a.googleEventId&&!a.calendarExported||a.calendarUpdatePending)&&new Date(a.start)>new Date());if(!rows.length){msg.textContent='There are no future appointments waiting to be created. Existing created events will not be duplicated.';return}if(!confirm(`Create ${rows.length} future outreach event(s) in your Google Calendar? Each event will include the prospect name, phone number, and a 10-minute reminder.`))return;let created=0,existing=0,failed=0;msg.textContent='Creating Google Calendar events…';for(const {a,c} of rows){try{if(a.googleEventId&&a.calendarUpdatePending){const start=new Date(a.start),end=new Date(start.getTime()+Number(a.minutes||5)*60000);await googleApi('/calendars/primary/events/'+encodeURIComponent(a.googleEventId),{method:'PATCH',body:JSON.stringify({summary:(a.type==='callback'?'Customer callback — ':a.type==='followup'?'Customer follow up — ':a.type==='cna'?'CNA scheduled — ':'Outreach call — ')+c.name,description:'Type: '+(a.type==='callback'?'Customer callback':a.type==='followup'?'Customer follow up':a.type==='cna'?'CNA scheduled':'Outreach call')+'\nCustomer: '+c.name+'\nPhone: '+(c.phone||'Not provided'),start:{dateTime:start.toISOString(),timeZone:Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC'},end:{dateTime:end.toISOString(),timeZone:Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC'},reminders:{useDefault:false,overrides:[{method:'popup',minutes:10}]}})});a.calendarUpdatePending=false;existing++;save();continue}const search='/calendars/primary/events?'+new URLSearchParams({privateExtendedProperty:'iboAssignmentId='+a.id,maxResults:'1'}).toString();const found=await googleApi(search);if(found.items&&found.items.length){a.googleEventId=found.items[0].id;a.googleEventLink=found.items[0].htmlLink||'';a.googleEventCreatedAt=new Date().toISOString();existing++;save();continue}const start=new Date(a.start),end=new Date(start.getTime()+Number(a.minutes||5)*60000);const event={summary:(a.type==='callback'?'Customer callback — ':a.type==='followup'?'Customer follow up — ':a.type==='cna'?'CNA scheduled — ':'Outreach call — ')+c.name,description:'Type: '+(a.type==='callback'?'Customer callback':a.type==='followup'?'Customer follow up':a.type==='cna'?'CNA scheduled':'Outreach call')+'\nCustomer: '+c.name+'\nPhone: '+(c.phone||'Not provided')+'\nCreated by IBO App V5.',start:{dateTime:start.toISOString(),timeZone:Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC'},end:{dateTime:end.toISOString(),timeZone:Intl.DateTimeFormat().resolvedOptions().timeZone||'UTC'},reminders:{useDefault:false,overrides:[{method:'popup',minutes:10}]},extendedProperties:{private:{iboAssignmentId:a.id,iboApp:'IBO App V5'}}};const made=await googleApi('/calendars/primary/events',{method:'POST',body:JSON.stringify(event)});a.googleEventId=made.id;a.googleEventLink=made.htmlLink||'';a.googleEventCreatedAt=new Date().toISOString();c.history=c.history||[];c.history.push({date:new Date().toISOString(),action:'Google Calendar event created',detail:start.toLocaleString()});created++;save()}catch(e){failed++;if(e.message.includes('authorization expired')){msg.textContent=`Stopped after ${created} created and ${existing} already found. ${e.message}`;break}}}renderOutreachAll();msg.textContent=`Google Calendar update finished: ${created} created, ${existing} existing event(s) matched, ${failed} failed. ${failed?'Check the error below and retry; previously created events are checked to avoid duplicates.':'Your approved appointments are now in Google Calendar.'}`;if(failed){msg.textContent+=' If Google reports an API or access error, confirm Calendar API is enabled and the OAuth client’s authorized origin matches this GitHub Pages site.'}};
+function restoreGoogleClientUI(){const saved=localStorage.getItem(GOOGLE_CLIENT_KEY)||DEFAULT_GOOGLE_CLIENT_ID;$('google-client-id').value=saved;if(saved)$('google-calendar-status').textContent='Google OAuth client ID is prefilled. Connect Google Calendar to authorize this session; Google tokens are not saved.'}
+function icsEscape(s){return String(s||'').replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\\;')}
+function icsDate(iso){return iso.replace(/[-:]/g,'').replace(/\.\d{3}/,'')}
+window.exportOutreachICS=function(){const rows=upcomingAssignments();if(!rows.length){$('outreach-export-message').textContent='Generate a schedule first.';return}const now=new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');const events=rows.map(({a,c})=>{const start=new Date(a.start),end=new Date(start.getTime()+a.minutes*60000);return ['BEGIN:VEVENT',`UID:${a.id}@ibo-app-local`,`DTSTAMP:${now}`,`DTSTART:${icsDate(a.start)}`,`DTEND:${icsDate(stamp(end))}`,`SUMMARY:${icsEscape('Outreach call — '+c.name)}`,`DESCRIPTION:${icsEscape('Customer: '+c.name+'\nPhone: '+(c.phone||'Not provided')+'\nCreated by IBO App V5. Contact details remain stored locally in the app.')}`,'BEGIN:VALARM','TRIGGER:-PT10M','ACTION:DISPLAY',`DESCRIPTION:${icsEscape('Outreach call: '+c.name)}`,'END:VALARM','END:VEVENT'].join('\r\n')});const content=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//IBO App//Outreach Scheduler V5//EN','CALSCALE:GREGORIAN','METHOD:PUBLISH',...events,'END:VCALENDAR'].join('\r\n');const blob=new Blob([content],{type:'text/calendar;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='IBO_Outreach_Schedule.ics';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);rows.forEach(({a})=>{a.calendarExported=true});save();$('outreach-export-message').textContent=`Exported ${rows.length} event(s). Import IBO_Outreach_Schedule.ics into Google Calendar. To avoid duplicates, import this file only once unless you intentionally want another copy.`}
+window.getOutreachReportData=function(){return {contacts:O.contacts,assignments:O.assignments}};
+window.downloadOutreachCSV=function(){const rows=O.contacts;if(!rows.length){$('outreach-export-message').textContent='There are no contacts to export.';return}const q=x=>'"'+String(x||'').replace(/"/g,'""')+'"';const csv=[['Customer Name','Phone','Category','Follow-up date & time','CNA date & time','Notes'].join(','),...rows.map(c=>[c.name,c.phone,categoryLabel(c),c.followupDateTime,c.cnaDateTime,c.notes].map(q).join(','))].join('\r\n');const blob=new Blob([csv],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='IBO_Customers.csv';document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);$('outreach-export-message').textContent='Customer list CSV exported.'}
+let reminderDismissedForSession=false;
+function upcomingTodayPriorityAppointments(){
+  const now=new Date();
+  const todayKey=localDate(now);
+  return O.assignments.map(a=>({a,c:getContact(a.contactId)})).filter(({a,c})=>{
+    if(!c||!['callback','followup','cna'].includes(a.type))return false;
+    const d=new Date(a.start);
+    return !Number.isNaN(d.getTime())&&localDate(d)===todayKey&&d>now;
+  }).sort((x,y)=>new Date(x.a.start)-new Date(y.a.start));
+}
+function showCallbackReminderIfNeeded(force=false){
+  const due=upcomingTodayPriorityAppointments();
+  let modal=$('callback-reminder-modal');
+  if(!due.length){if(modal){modal.classList.remove('show');modal.setAttribute('aria-hidden','true')}return}
+  if(reminderDismissedForSession&&!force)return;
+  if(!modal){
+    modal=document.createElement('div');modal.id='callback-reminder-modal';modal.className='outreach-privacy-overlay';modal.style.zIndex='2147483647';
+    modal.innerHTML='<div class="outreach-privacy-dialog" role="dialog" aria-modal="true" aria-labelledby="callback-reminder-title"><h3 id="callback-reminder-title">📅 Today’s appointment reminders</h3><p id="callback-reminder-list"></p><button type="button" class="privacy-ok" id="callback-reminder-ok">Got it</button></div>';
+    document.body.appendChild(modal);
+    $('callback-reminder-ok').addEventListener('click',()=>{reminderDismissedForSession=true;modal.classList.remove('show');modal.setAttribute('aria-hidden','true')});
+  }
+  const labels={callback:'Customer callback',followup:'Customer follow-up',cna:'CNA scheduled'};
+  $('callback-reminder-list').innerHTML=due.map(({a,c})=>{const d=new Date(a.start);return '<div style="padding:7px 0;border-bottom:1px solid var(--line)"><b>'+esc(c.name)+'</b><br><span class="muted">'+esc(labels[a.type]||'Appointment')+' • '+esc(d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'}))+'</span></div>'}).join('');
+  modal.classList.add('show');modal.setAttribute('aria-hidden','false');
+}
+function refreshCallbackReminder(){
+  const modal=$('callback-reminder-modal');
+  if(modal&&modal.classList.contains('show'))showCallbackReminderIfNeeded(true);
+}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){reminderDismissedForSession=false;showCallbackReminderIfNeeded(true)}});
+
+loadSettingsToUI();restoreGoogleClientUI();O.contacts.forEach(c=>{const raw=c.callbackDateTime||(c.callbackDate?c.callbackDate+'T18:00':'');if(raw&&!assignmentForCallback(c)){const dt=new Date(raw);if(!Number.isNaN(dt.getTime()))O.assignments.push({id:uid(),contactId:c.id,start:stamp(dt),minutes:5,type:'callback',createdAt:new Date().toISOString(),calendarExported:false})}});save();renderOutreachAll();showCallbackReminderIfNeeded();window.setInterval(refreshCallbackReminder,15000);
+})();
+</script>
+
+</body></html>
