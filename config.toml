@@ -1,0 +1,2 @@
+[functions.contact-shortcut-api]
+verify_jwt = false
